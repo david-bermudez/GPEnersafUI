@@ -70,32 +70,30 @@ export class FacturasService {
     return this.http.post<any>(`${this.baseUrl}/GetErrorInvoice`,body,{headers})
   }
 
-  GenerateInvoiceAcconting(factura:any){
+  GenerateInvoiceAcconting(factura:any, tipo:string){
     let {fechafacturacion,version,factura_id} = factura
     // fechafacturacion = this.formatDate(fechafacturacion)
-    let body = {"Fechafacturacion" :fechafacturacion,
-                 "Version" :  version,
-                 "Factura_id" : factura_id}
+    let body = {
+                  "Fechafacturacion" :fechafacturacion,
+                  "Version"    : version,
+                  "Factura_id" : factura_id,
+                  "Interfase"  : tipo
+               }
     let headers = new HttpHeaders()
     headers = headers.append(
       'Authorization',
       'bearer ' + localStorage.getItem('token')
     );
 
-    return this.http.post<any>(`${this.baseUrl}/GetPendingInvoiceItems`,body,{headers})
+    return this.http.post<any>(`${this.baseUrl}/GenerateInvoiceAcconting`,body,{headers})
   }
 
-
   GetLoadedInvoiceByCompany(){
-
-
-
     let headers = new HttpHeaders()
     headers = headers.append(
       'Authorization',
       'bearer ' + localStorage.getItem('token')
     );
-
 
     console.log(headers)
     return this.http.post<any>(`${this.baseUrl}/GetLoadedInvoiceByCompany`,null,{headers:headers})
@@ -118,7 +116,6 @@ export class FacturasService {
   }
 
   GetLoadedInvoicesDummie():Observable<any>{
-
     return this.http.get('assets/factura.json')
   }
 

@@ -213,20 +213,15 @@ export class FacturasComponent implements OnInit {
   }
 
   getRecord(factura:any){
-
-
-
     this._facturas.GetPendingInvoiceItems(factura)
     .subscribe( console.log)
   }
 
-  GenerateInvoiceAcconting(){
-
-    for( let i = 0 ; i < this.facturacion.length ; i++){
-    this._facturas.GenerateInvoiceAcconting(this.facturacion[i])
-    .subscribe()
-
-    }
+  GenerateInvoiceAcconting(factura:any ,tipoContabilizacion : string){
+    //for( let i = 0 ; i < 1 ; i++){
+      console.log("tipoContabilizacion" + tipoContabilizacion);
+      this._facturas.GenerateInvoiceAcconting(factura , tipoContabilizacion).subscribe()
+    //}
   }
 }
 
