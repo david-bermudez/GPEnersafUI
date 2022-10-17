@@ -16,7 +16,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input'
 import { MatNativeDateModule } from '@angular/material/core';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -46,7 +46,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule { }
