@@ -1,0 +1,99 @@
+{
+  "totalInvoice": 200.0,
+  "totalPayment": 12445769936.0,
+  "difference": 12445769736.0,
+  "payments": [
+      {
+          "consecutive": "2631",
+          "code": "I202209-22",
+          "paymentValue": 1958506046.0,
+          "fechaRecaudo": "2022-09-12T00:00:00"
+      },
+      {
+          "consecutive": "2632",
+          "code": "I202209-23",
+          "paymentValue": 2905789079.0,
+          "fechaRecaudo": "2022-09-12T00:00:00"
+      },
+      {
+          "consecutive": "2637",
+          "code": "I202209-47",
+          "paymentValue": 1175660430.0,
+          "fechaRecaudo": "2022-09-20T00:00:00"
+      },
+      {
+          "consecutive": "2651",
+          "code": "I202209-79",
+          "paymentValue": 182929413.0,
+          "fechaRecaudo": "2022-09-27T00:00:00"
+      },
+      {
+          "consecutive": "2631",
+          "code": "I202209-22",
+          "paymentValue": 1958506046.0,
+          "fechaRecaudo": "2022-09-12T00:00:00"
+      },
+      {
+          "consecutive": "2632",
+          "code": "I202209-23",
+          "paymentValue": 2905789079.0,
+          "fechaRecaudo": "2022-09-12T00:00:00"
+      },
+      {
+          "consecutive": "2637",
+          "code": "I202209-47",
+          "paymentValue": 1175660430.0,
+          "fechaRecaudo": "2022-09-20T00:00:00"
+      },
+      {
+          "consecutive": "2651",
+          "code": "I202209-79",
+          "paymentValue": 182929413.0,
+          "fechaRecaudo": "2022-09-27T00:00:00"
+      }
+  ],
+  "invoices": [
+      {
+          "factura_id": 3,
+          "fechaFacturacion": "20220901",
+          "version": "tx2",
+          "description": "CFP24041 - PUERTO GAITAN",
+          "invoiceAmount": 22754740222.0,
+          "invoiceAmountModified": 100.0,
+          "username": null,
+          "period": null,
+          "status": 0,
+          "interfase": null,
+          "factura_id": 3,
+          "fechaFacturacion": "20220901",
+          "version": "tx2",
+          "description": "CFP24041 - PUERTO GAITAN",
+          "invoiceAmount": 22754740222.0,
+          "invoiceAmountModified": 100.0,
+          "username": null,
+          "period": null,
+          "status": 0,
+          "interfase": null,
+    "detail" : [
+      {
+        "id" : 1123,
+        "description" : "CONCEPTO MARGEN C" ,
+        "value": 1344322.0,
+        "suggestedValue" : 234234234.0
+      },
+      {
+        "id" : 1123,
+        "description" : "CONCEPTO MARGEN C" ,
+        "value": 1344322.0,
+        "suggestedValue" : 234234234.0
+      },
+      {
+        "id" : 1123,
+        "description" : "CONCEPTO MARGEN C" ,
+        "value": 1344322.0,
+        "suggestedValue" : 234234234.0
+      }
+    ]
+      }
+  ]
+}

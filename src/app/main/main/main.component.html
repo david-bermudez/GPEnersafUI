@@ -1,0 +1,68 @@
+<div *ngIf="loader.isLoading | async " class="loader-container">
+
+  <!-- <mat-progress-bar  mode="indeterminate"></mat-progress-bar> -->
+
+  <mat-spinner></mat-spinner>
+</div>
+<div >
+  <app-header></app-header>
+
+</div>
+
+<div class="mt-5">
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Sistema de Integracion - Facturador Comercial</h1>
+
+   </div>
+
+
+
+    <!-- <input matInput [matDatepicker]="picker" [(ngModel)]="periodo" (dateChange)="periodChange($event)" >
+
+    <mat-datepicker-toggle matSuffix   [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker> -->
+
+    <mat-label>Selecciona un Periodo </mat-label>
+    <input matInput [matDatepicker]="dob" [(ngModel)]="periodo">
+    <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+    <mat-datepicker #dob></mat-datepicker>
+      <!-- {{periodo | date : 'YYYY/MM/dd'}} -->
+
+
+  </main>
+</div>
+
+
+<section class="section">
+  <div class="row">
+
+    <div class="col">
+
+      <div >
+        <div >
+
+          <mat-tab-group mat-align-tabs="center">
+
+
+
+            <mat-tab label="Cargue de informacion">
+                <app-facturas [perido]="periodo" ></app-facturas>
+
+            </mat-tab>
+
+            <mat-tab label="Pagos Realizados">
+              <app-historial-facturas [perido]="periodo" ></app-historial-facturas>
+            </mat-tab>
+
+
+          </mat-tab-group>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

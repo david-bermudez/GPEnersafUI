@@ -1,0 +1,59 @@
+
+<div *ngIf="loader.isLoading | async " class="loader-container">
+
+  <!-- <mat-progress-bar  mode="indeterminate"></mat-progress-bar> -->
+
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="limiter">
+  <div class="container-login100" >
+      <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+        <form class="login100-form" autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="login()">
+
+
+          <div class="d-flex login100-form-title p-b-49">
+            <a href="index.html" class="logo d-flex align-items-center w-auto">
+              <img src="https://www.gecelca.com.co/wp-content/uploads/2021/08/LOGO.png" width="150" height="700" alt="">
+            </a>
+          </div>
+
+          <br>
+
+          <div class="wrap-input100 m-b-23">
+              <span class="label-input100">username</span>
+              <input class="input100"
+                     type="text"
+                     formControlName = 'username'
+                     placeholder="Ingrese su Usuario">
+              <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100">
+              <span class="label-input100">Password</span>
+              <input class="input100"
+                     type="password"
+                     formControlName = 'password'
+                     placeholder="Ingrese su contraseña">
+              <span class="focus-input100"></span>
+          </div>
+
+          <div class="text-right p-t-8 p-b-31"></div>
+
+          <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                  <div class="login100-form-bgbtn"></div>
+                  <button class="login100-form-btn" [disabled]="miFormulario.invalid">
+                      Login
+                  </button>
+              </div>
+          </div>
+
+
+        </form>
+
+      </div>
+  </div>
+</div>
+
+
