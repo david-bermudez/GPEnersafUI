@@ -11,16 +11,10 @@ export class FacturasService {
 
   constructor(private http:HttpClient) { }
 
-
-
-  private baseUrl:string = 'http://localhost:9091/api/EnerSaf';
+  private baseUrl:string = 'http://localhost:64117/api/EnerSaf';
 
   getInvoice(Periodo:any){
-    // debugger
-
-
-    // console.log(Periodo.getFullYear())
-    // Periodo = Periodo.slice(0,4)+Periodo.slice(6,8)
+    console.log(Periodo);
     let body = {Periodo}
     let headers = new HttpHeaders()
     headers = headers.append(
@@ -28,20 +22,12 @@ export class FacturasService {
       'bearer ' + localStorage.getItem('token')
     );
 
-
-
     return this.http.post<any>(`${this.baseUrl}/GetPendingInvoice`,body,{headers})
-
-
   }
 
 
-  ValidatePendingInvoice(factura:any){
-    let {fechafacturacion,version,factura_id} = factura
-    // fechafacturacion = this.formatDate(fechafacturacion)
-    let body = {"Fechafacturacion" :fechafacturacion,
-                 "Version" :  version,
-                 "Factura_id" : factura_id}
+  ValidatePendingInvoice( facturas : any ){
+    let body = facturas;
     let headers = new HttpHeaders()
     headers = headers.append(
       'Authorization',
@@ -68,6 +54,21 @@ export class FacturasService {
     return this.http.post<any>(`${this.baseUrl}/GetPendingInvoiceItems`,body,{headers})
   }
 
+  GetErrorInvoice (factura:any){
+
+    let {fechafacturacion,version,factura_id} = factura
+    // fechafacturacion = this.formatDate(fechafacturacion)
+    let body = {"Fechafacturacion" :fechafacturacion,
+                 "Version" :  version,
+                 "Factura_id" : factura_id}
+    let headers = new HttpHeaders()
+    headers = headers.append(
+      'Authorization',
+      'bearer ' + localStorage.getItem('token')
+    );
+
+    return this.http.post<any>(`${this.baseUrl}/GetErrorInvoice`,body,{headers})
+  }
 
   GenerateInvoiceAcconting(factura:any){
     let {fechafacturacion,version,factura_id} = factura
@@ -130,9 +131,5 @@ export class FacturasService {
     let formatted_date = date.substring(0,4)+date.substring(5,6)+date.substring(7,8)
      return formatted_date;
     }
-
-
-
-
 
 }

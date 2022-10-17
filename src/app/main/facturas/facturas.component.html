@@ -1,13 +1,13 @@
 
-  <div class="column  mb-3">
+<div class="column  mb-3">
 
-    <!-- todo colocar GetPendingInvoice -->
-    <button type="button" class="mr-1" mat-raised-button color="primary" (click)="obtenerFacturas()">Obtener Facturas</button>
-    <!-- ValidatePendingInvoice -->
-    <button type="button" mat-raised-button color="primary" (click)="validarFacturas()" [disabled]="validar">Validar Facturas</button>
+  <!-- todo colocar GetPendingInvoice -->
+  <button type="button" class="mr-1" mat-raised-button color="primary" (click)="obtenerFacturas()">Obtener Facturas</button>
+  <!-- ValidatePendingInvoice -->
+  <button type="button" mat-raised-button color="primary" (click)="validarFacturas()" [disabled]="validar">Validar Facturas</button>
 
-    <button type="button" mat-raised-button color="primary"   (click)="GenerateInvoiceAcconting()" [disabled]="validar">Procesar Facturas</button>
-  </div>
+  <button type="button" mat-raised-button color="primary"   (click)="GenerateInvoiceAcconting()" [disabled]="validar">Procesar Facturas</button>
+</div>
 
 
 <table *ngIf="facturacion.length > 0" mat-table [dataSource]="facturacion" class="mat-elevation-z8" multiTemplateDataRows>
@@ -20,7 +20,7 @@
 
 <ng-container matColumnDef="Fecha Vencimiento">
   <th mat-header-cell *matHeaderCellDef> Fecha Facturacion </th>
-  <td mat-cell *matCellDef="let element"> {{element.fechafacturacion | date:'YYYY/MM/dd'}} </td>
+  <td mat-cell *matCellDef="let element"> {{element.fechafacturacion}} </td>
 </ng-container>
   <!-- Name Column -->
   <ng-container matColumnDef="Cliente">
@@ -28,7 +28,11 @@
     <td mat-cell *matCellDef="let element"> {{element.cliente_nombre}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
+  <ng-container matColumnDef="Version">
+    <th mat-header-cell *matHeaderCellDef> Version </th>
+    <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="Factura">
     <th mat-header-cell *matHeaderCellDef> Factura DIAN </th>
     <td mat-cell *matCellDef="let element"> {{element.factura_dian}} </td>
@@ -44,35 +48,15 @@
     <td mat-cell *matCellDef="let element"> {{element.municipio_id}} - {{element.municipio_nombre}} - {{element.departamento_nombre}} </td>
   </ng-container>
 
-
-
   <ng-container matColumnDef="Estado">
     <th mat-header-cell *matHeaderCellDef> Inconsistencias </th>
-
-    <!-- <mat-cell *matCellDef="let element" >
-
-
-      <ng-container *ngIf="mensajes.length > 0" >
-
-        <span >{{hola(element)}}</span>
-        </ng-container>
-
-    </mat-cell> -->
     <td  mat-cell *matCellDef="let element; let i = index;">
-      <ng-container *ngIf="mensajes.length > 0">
-
-
-        <span ngClass="badge bg-secondary" (click)="openDialog(element)" ><i class="bi bi-check-circle me-1"></i> </span>
+      <ng-container *ngIf="validacionFinalizada">
+        <span ngClass="badge bg-secondary" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i> </span>
       </ng-container>
-
-
     </td>
 
-
-
-
   </ng-container>
-
 
   <ng-container matColumnDef="getdetails">
     <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
@@ -90,47 +74,38 @@
            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
            <div *ngIf="element.factura_dian === expandedSymbol">
 
-             <table mat-table [dataSource]="facturaItems" class="secundario">
+             <table mat-table [dataSource]="facturaItems" class="invoice-item-header">
 
               <ng-container matColumnDef="index">
-                <th mat-header-cell *matHeaderCellDef class="secundario"> Id. </th>
+                <th mat-header-cell *matHeaderCellDef class="invoice-item-header"> Id. </th>
                 <td mat-cell *matCellDef="let element; let i = index;" class="secundario"> {{i+1}} </td>
               </ng-container>
 
               <!-- Name Column -->
               <ng-container matColumnDef="Tipo Asiento">
-                <th mat-header-cell *matHeaderCellDef class="secundario"> Tipo Asiento </th>
+                <th mat-header-cell *matHeaderCellDef class="invoice-item-header"> Tipo Asiento </th>
                 <td mat-cell *matCellDef="let element" class="secundario"> {{element.tipoAsiento}} </td>
               </ng-container>
 
               <!-- Weight Column -->
-              <ng-container matColumnDef="description">
-                <th mat-header-cell *matHeaderCellDef class="secundario"> description </th>
+              <ng-container matColumnDef="Descripcion">
+                <th mat-header-cell *matHeaderCellDef class="invoice-item-header"> Descripcion </th>
                 <td mat-cell *matCellDef="let element" class="secundario"> {{element.description}} </td>
               </ng-container>
 
               <!-- Symbol Column -->
-              <ng-container matColumnDef="value">
-                <th mat-header-cell *matHeaderCellDef class="secundario"> value </th>
-                <td mat-cell *matCellDef="let element" class="secundario"> {{element.value}} </td>
+              <ng-container matColumnDef="Valor">
+                <th mat-header-cell *matHeaderCellDef class="invoice-item-header"> Valor </th>
+                <td mat-cell *matCellDef="let element" class="invoice-item-value"> {{ element.value | currency}} </td>
               </ng-container>
+
               <tr mat-header-row *matHeaderRowDef="displayedColumnsItems"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumnsItems;  let i = index"></tr>
              </table>
           </div>
-
-
       </div>
     </td>
   </ng-container>
-
-
-
-
-
-
-
-
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let element; columns: displayedColumns;"
@@ -139,11 +114,4 @@
       (click)="toggleExpandableSymbol(element.cliente_nombre)">
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']; let i = index " class="example-detail-row"></tr>
-
-
-
-
-  </table>
-
-
-
+</table>

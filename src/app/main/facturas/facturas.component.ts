@@ -7,10 +7,6 @@ import { Factura } from '../interfaces/factura.interfaces';
 import { FacturasService } from '../services/facturas.service';
 import swal from 'sweetalert2';
 
-
-
-
-
 @Component({
   selector: 'app-facturas',
   templateUrl: './facturas.component.html',
@@ -23,18 +19,20 @@ import swal from 'sweetalert2';
     ]),
   ],
 })
+
 export class FacturasComponent implements OnInit {
 
     public validar:boolean = true
     public facturacion:any[] = []
     public mensajes:any[] = []
     public verDetalle:boolean = true;
+    public validacionFinalizada:boolean = false;
 
-   dataSource:any
+    dataSource:any
 
   // displayedColumns: string[] = ['#', 'Cliente', 'Factura', 'Concepto','Valor Concepto','Fecha Vencimiento','Estado'];
-  displayedColumns: string[] = ['Fecha Vencimiento','No','Cliente', 'Factura', 'Concepto','Municipio','Estado','getdetails'];
-  displayedColumnsItems: string[] = ['index','Tipo Asiento','description', 'value'];
+  displayedColumns: string[] = ['Fecha Vencimiento','No','Cliente', 'Version', 'Factura', 'Concepto','Municipio','Estado','getdetails'];
+  displayedColumnsItems: string[] = ['index','Tipo Asiento','Descripcion', 'Valor'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement: Factura | null |undefined;
   facturaItems: any;
@@ -42,16 +40,10 @@ export class FacturasComponent implements OnInit {
   @Input() perido : any ;
 
   constructor(private dialogo:MatDialog, public _facturas:FacturasService) {
-
     this.obtenerFacturas()
-
-
   }
 
   ngOnInit(): void {
-
-
-
   }
 
   expandedSymbol: string = '';
@@ -65,6 +57,7 @@ export class FacturasComponent implements OnInit {
 
   obtenerItems(factura:any){
 
+    let moneyFormat = Intl.NumberFormat('es-CO');
 
     if(factura.factura_dian !== this.expandedSymbol){
 
@@ -83,57 +76,37 @@ export class FacturasComponent implements OnInit {
 
 
   obtenerFacturas(){
-
-    console.log(this.perido)
+    console.log("obtenerFacturas");
 
     if(this.perido  !== undefined){
-
       let fecha = new Date(this.perido)
+      let year  = fecha.getFullYear()
+      let month = fecha.getMonth() + 1
+      let period = year + month.toString().padStart(2,"0");
 
-      let año =fecha.getFullYear()
-      let mes =fecha.getMonth()
-      let fechaF = año +'0'+mes
-      console.log(fechaF)
+      console.log("obtenerFacturas");
+      this._facturas.getInvoice(period.toString())
 
-      console.log(fechaF.toString())
-
-      this._facturas.getInvoice(fechaF.toString())
     .subscribe( info => {
-
-      if( info.length === 0)
-
-      {
+      if( info.length === 0){
         swal.fire({
-
           title : 'No se encontraron Facturas para el periodo',
           icon : 'warning',
-
-
         })
-
-
-      }else{
+      } else {
         this.validar = false
         this.facturacion = info
       }
     })
     }else{
-
       this._facturas.getInvoice('')
     .subscribe( info => {
-
         if( info.length === 0)
-
         {
           swal.fire({
-
             title : 'No se encontraron Facturas para el periodo',
             icon : 'warning',
-
-
           })
-
-
         }else{
           this.validar = false
           this.facturacion = info
@@ -141,33 +114,31 @@ export class FacturasComponent implements OnInit {
         // console.log(info)
     })
     }
-
-
   }
-
-  // TODO: preguntarte a davidson si se envia todo el paquete o se hacen peticiones individuales
 
   validarFacturas(){
 
-    // this.mensajes = []
+    let invoices = { invoices : this.facturacion };
+    this.mensajes = []
 
-    for( let i = 0 ; i < this.facturacion.length ; i++){
-
-      this._facturas.ValidatePendingInvoice(this.facturacion[i])
-      .subscribe( resp => {
-
-
-        this.mensajes.push({
-          mensaje : resp.mensaje,
-          code : resp.code ,
-          id : this.facturacion[i].factura_id
-        })
-
-        // this.obtenerMensajeIndividuales()
-        // console.log(this.mensajes)
+    this._facturas.ValidatePendingInvoice(invoices).subscribe( resp => {
+      this.validacionFinalizada = true;
+      swal.fire({
+        title : resp.mensaje,
+        icon : 'warning',
       })
-    }
+    })
 
+  }
+
+  obtenerErrorFactura(factura : any){
+
+    this._facturas.GetErrorInvoice(factura).subscribe( resp => {
+      swal.fire({
+        title : resp.mensaje,
+        icon : 'warning',
+      })
+    })
 
   }
 

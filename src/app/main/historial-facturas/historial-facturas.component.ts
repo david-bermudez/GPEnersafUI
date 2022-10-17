@@ -5,10 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DetalleFactura } from '../interfaces/factura.interfaces';
 import { FacturasService } from '../services/facturas.service';
 
-
-
-
-
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -16,10 +12,6 @@ export interface PeriodicElement {
   symbol: string;
   description: string;
 }
-
-
-
-
 
 @Component({
   selector: 'app-historial-facturas',
@@ -34,8 +26,6 @@ export interface PeriodicElement {
   ],
 })
 
-
-
 export class HistorialFacturasComponent  {
   dataSource :any;
   displayedColumns = ['Cliente','getdetails'];
@@ -46,7 +36,6 @@ export class HistorialFacturasComponent  {
   expandedElement:  null | undefined;
 
   @Input() perido : any ;
-
 
   public facturacion:any[] = []
   public detalleEmpresa!:DetalleFactura

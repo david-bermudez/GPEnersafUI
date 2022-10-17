@@ -24,19 +24,26 @@ tr.example-element-row:not(.example-expanded-row):active {
   /* width: 100%; */
 }
 
-
-
 .mat-row {
-  background-color: #7d8bdd;
+  background-color: #f0f8ff;
 }
+
+.mat-row .invoice-item-header {
+  background-color: #ffffff;
+}
+
 .mat-row .secundario {
-  background-color: #b0b8e9;
+  background-color: #FAFDFF;
+}
+
+.mat-row .invoice-item-value {
+  background-color: #FAFDFF;
+  text-align: right;
 }
 
 .mat-row:nth-child(4n-1), .mat-row:nth-child(4n) {
   background-color: #ffffff;
 }
-
 
 /* .mat-row:nth-child(2n),  .secundario {
   background-color: #ffffff;
