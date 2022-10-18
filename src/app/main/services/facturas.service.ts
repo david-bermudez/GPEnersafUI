@@ -118,9 +118,29 @@ export class FacturasService {
     return this.http.get('assets/factura.json')
   }
 
-  SaveLoadedInvoices(factura:any){
+  SaveLoadedInvoices(body:any){
+
+    let headers = new HttpHeaders()
+    headers = headers.append(
+      'Authorization',
+      'bearer ' + localStorage.getItem('token')
+    );
 
 
+    return this.http.post<any>(`${this.baseUrl}/SaveLoadedInvoices`,body,{headers:headers})
+
+
+  }
+  GeneratePayableAcconting(body:any){
+
+    let headers = new HttpHeaders()
+    headers = headers.append(
+      'Authorization',
+      'bearer ' + localStorage.getItem('token')
+    );
+
+
+    return this.http.post<any>(`${this.baseUrl}/GeneratePayableAcconting`,body,{headers:headers})
 
 
   }

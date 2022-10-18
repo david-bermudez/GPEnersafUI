@@ -80,12 +80,7 @@
               <th mat-header-cell *matHeaderCellDef class="secundario"> Descripcion </th>
               <td mat-cell *matCellDef="let element; let i = index;" class="secundario"> {{element.description}} </td>
             </ng-container>
-            <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef class="secundario"> Acciones </th>
-              <td mat-cell *matCellDef="let element; let i = index;" class="secundario">
-                <button mat-raised-button class="guardar" (click)="guardar(element)">Guardar</button><button mat-raised-button class="confirmar" (click)="confirmar(element)">Confirmar</button>
-              </td>
-            </ng-container>
+
 
             <ng-container matColumnDef="expandedDetailFactura">
               <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
@@ -115,6 +110,15 @@
               <th mat-header-cell *matHeaderCellDef class="secundario"> value </th>
               <td mat-cell *matCellDef="let element; let i = index;" class="secundario"> {{element.value | number}} </td>
             </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="secundario"> Acciones </th>
+              <td mat-cell *matCellDef="let element; let i = index;" class="secundario">
+                <button mat-raised-button class="guardar" (click)="SaveLoadedInvoices(element)">Guardar</button><button mat-raised-button class="confirmar" (click)="GeneratePayableAcconting(element)">Confirmar</button>
+              </td>
+            </ng-container>
+
+
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsFacturasdetalle"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsFacturasdetalle;  let i = index"></tr>

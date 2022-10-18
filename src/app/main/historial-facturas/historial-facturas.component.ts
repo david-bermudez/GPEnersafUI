@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DetalleFactura } from '../interfaces/factura.interfaces';
 import { FacturasService } from '../services/facturas.service';
+import swal from 'sweetalert2';
 
 export interface PeriodicElement {
   name: string;
@@ -30,8 +31,8 @@ export class HistorialFacturasComponent  {
   dataSource :any;
   displayedColumns = ['Cliente','getdetails'];
   displayedColumnsItems: string[] = ['Consecutivo','Codigo','Valor', 'Fecha Ingreso'];
-  displayedColumnsFacturas: string[] = ['Descripcion','actions'];
-  displayedColumnsFacturasdetalle: string[] = ['id','description','value','suggestedValue'];
+  displayedColumnsFacturas: string[] = ['Descripcion'];
+  displayedColumnsFacturasdetalle: string[] = ['id','description','value','suggestedValue','actions'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement:  null | undefined;
 
@@ -86,21 +87,21 @@ export class HistorialFacturasComponent  {
     let month = fecha.getMonth() + 1
     let period = year + month.toString().padStart(2,"0");
 
-    this._facturas.GetLoadedInvoices(empresa,period.toString())
-    .subscribe(resp => {
-      console.log(resp)
-        this.detalleEmpresa = resp
-        this.detallPagos = resp.payments
-        this.detallFacturas = resp.invoices
-    })
-
-    // this._facturas.GetLoadedInvoicesDummie()
-    // .subscribe( resp => {
-    //    this.detalleEmpresa = resp
+    // this._facturas.GetLoadedInvoices(empresa,period.toString())
+    // .subscribe(resp => {
+    //   console.log(resp)
+    //     this.detalleEmpresa = resp
     //     this.detallPagos = resp.payments
-    //    this.detallFacturas = resp.invoices
+    //     this.detallFacturas = resp.invoices
+    // })
 
-    //   })
+    this._facturas.GetLoadedInvoicesDummie()
+    .subscribe( resp => {
+       this.detalleEmpresa = resp
+        this.detallPagos = resp.payments
+       this.detallFacturas = resp.invoices
+
+      })
 
 
 
@@ -109,22 +110,53 @@ export class HistorialFacturasComponent  {
 
   SaveLoadedInvoices(elemt:any){
 
-    let body = [
-      {
-        "invoices" : elemt
-      }
-    ]
+    this._facturas.SaveLoadedInvoices(elemt)
+    .subscribe(
 
-    console.log(body)
+      resp=> {
+
+        let icono = ''
+
+        if(resp.code === '200'){
+
+          icono = 'success'
+        }else{
+          icono = 'error'
+        }
+
+        swal.fire({
+          title: 'Proceso Terminado',
+          text : resp.mensaje,
+          icon : 'info'
+        })
+      }
+    )
+
+
+
   }
   GeneratePayableAcconting(elemt:any){
-    let body = [
-      {
-        "invoices" : elemt
-      }
-    ]
+    this._facturas.GeneratePayableAcconting(elemt)
+    .subscribe(
 
-    console.log(body)
+      resp=> {
+
+        let icono = ''
+
+        if(resp.code === '200'){
+
+          icono = 'success'
+        }else{
+          icono = 'error'
+        }
+
+        swal.fire({
+          title: 'Proceso Terminado',
+          text : resp.mensaje,
+          icon : 'info'
+        })
+      }
+    )
   }
 
 
