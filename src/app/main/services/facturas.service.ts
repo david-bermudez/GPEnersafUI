@@ -11,7 +11,7 @@ export class FacturasService {
 
   constructor(private http:HttpClient) { }
 
-  private baseUrl:string = 'http://localhost:64117/api/EnerSaf';
+  private baseUrl:string = 'http://localhost:9091/api/EnerSaf';
 
   getInvoice(Periodo:any){
     console.log(Periodo);
@@ -99,12 +99,11 @@ export class FacturasService {
     return this.http.post<any>(`${this.baseUrl}/GetLoadedInvoiceByCompany`,null,{headers:headers})
   }
 
-  GetLoadedInvoices(cliente:any):Observable<any>{
+  GetLoadedInvoices(cliente:any,periodo:string):Observable<any>{
 
     let { group_ids } = cliente
-    let period = '202209'
+    let period = periodo
     let body = {group_ids, period}
-    period = this.formatDate(period)
     let headers = new HttpHeaders()
     headers = headers.append(
       'Authorization',
@@ -119,7 +118,10 @@ export class FacturasService {
     return this.http.get('assets/factura.json')
   }
 
-  SaveLoadedInvoices(){
+  SaveLoadedInvoices(factura:any){
+
+
+
 
   }
 

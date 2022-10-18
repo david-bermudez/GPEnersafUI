@@ -80,21 +80,27 @@ export class HistorialFacturasComponent  {
 
   obtenerItems(empresa:any){
 
-    // this._facturas.GetLoadedInvoices(empresa,periodo)
-    // .subscribe(resp => {
-    //   console.log(resp)
-    //     this.detalleEmpresa = resp
-    //     this.detallPagos = resp.payments
-    //     this.detallFacturas = resp.invoices
-    // })
 
-    this._facturas.GetLoadedInvoicesDummie()
-    .subscribe( resp => {
-       this.detalleEmpresa = resp
+    let fecha = new Date(this.perido)
+    let year  = fecha.getFullYear()
+    let month = fecha.getMonth() + 1
+    let period = year + month.toString().padStart(2,"0");
+
+    this._facturas.GetLoadedInvoices(empresa,period.toString())
+    .subscribe(resp => {
+      console.log(resp)
+        this.detalleEmpresa = resp
         this.detallPagos = resp.payments
-       this.detallFacturas = resp.invoices
+        this.detallFacturas = resp.invoices
+    })
 
-      })
+    // this._facturas.GetLoadedInvoicesDummie()
+    // .subscribe( resp => {
+    //    this.detalleEmpresa = resp
+    //     this.detallPagos = resp.payments
+    //    this.detallFacturas = resp.invoices
+
+    //   })
 
 
 
