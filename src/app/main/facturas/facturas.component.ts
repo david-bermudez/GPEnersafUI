@@ -218,10 +218,13 @@ export class FacturasComponent implements OnInit {
   }
 
   GenerateInvoiceAcconting(factura:any ,tipoContabilizacion : string){
-    //for( let i = 0 ; i < 1 ; i++){
-      console.log("tipoContabilizacion" + tipoContabilizacion);
-      this._facturas.GenerateInvoiceAcconting(factura , tipoContabilizacion).subscribe()
-    //}
+      this._facturas.GenerateInvoiceAcconting(factura , tipoContabilizacion).subscribe( resp => {
+        this.validacionFinalizada = true;
+        swal.fire({
+          title : resp.mensaje,
+          icon : 'warning',
+        })
+      })
   }
 }
 
