@@ -30,7 +30,7 @@ export interface PeriodicElement {
 export class HistorialFacturasComponent  {
   dataSource :any;
   displayedColumns = ['Cliente','getdetails'];
-  displayedColumnsItems: string[] = ['Consecutivo','Codigo','Valor', 'Fecha Ingreso'];
+  displayedColumnsItems: string[] = ['Consecutivo','Codigo','Valor', 'FechaIngreso'];
   displayedColumnsFacturas: string[] = ['Descripcion','actions'];
   displayedColumnsFacturasdetalle: string[] = ['id','description','value','suggestedValue'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];

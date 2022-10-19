@@ -26,9 +26,23 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 
 
-/* .mat-row {
-  background-color: #4558c9;
+ .mat-row {
+  background-color: #f0f8ff;
 }
+
+.invoice-item-value{
+  text-align: right;
+}
+
+.mat-column-Valor {
+  text-align: right;
+  justify-content: flex-end;
+}
+.mat-column-FechaIngreso {
+  text-align: right;
+  justify-content: flex-end;
+}
+/*
 .mat-row .secundario {
   background-color: #5065d8;
 }
