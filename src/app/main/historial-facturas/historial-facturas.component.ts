@@ -31,8 +31,8 @@ export class HistorialFacturasComponent  {
   dataSource :any;
   displayedColumns = ['Cliente','getdetails'];
   displayedColumnsItems: string[] = ['Consecutivo','Codigo','Valor', 'Fecha Ingreso'];
-  displayedColumnsFacturas: string[] = ['Descripcion'];
-  displayedColumnsFacturasdetalle: string[] = ['id','description','value','suggestedValue','actions'];
+  displayedColumnsFacturas: string[] = ['Descripcion','actions'];
+  displayedColumnsFacturasdetalle: string[] = ['id','description','value','suggestedValue'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement:  null | undefined;
 
