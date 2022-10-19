@@ -68,15 +68,7 @@ export class HistorialFacturasComponent  {
   }
 
 
-  guardar(elemtn:any){
 
-    console.log(elemtn)
-  }
-
-  confirmar(elemtn:any){
-
-    console.log(elemtn)
-  }
 
 
   obtenerItems(empresa:any){
@@ -87,21 +79,21 @@ export class HistorialFacturasComponent  {
     let month = fecha.getMonth() + 1
     let period = year + month.toString().padStart(2,"0");
 
-    // this._facturas.GetLoadedInvoices(empresa,period.toString())
-    // .subscribe(resp => {
-    //   console.log(resp)
-    //     this.detalleEmpresa = resp
-    //     this.detallPagos = resp.payments
-    //     this.detallFacturas = resp.invoices
-    // })
-
-    this._facturas.GetLoadedInvoicesDummie()
-    .subscribe( resp => {
-       this.detalleEmpresa = resp
+    this._facturas.GetLoadedInvoices(empresa,period.toString())
+    .subscribe(resp => {
+      console.log(resp)
+        this.detalleEmpresa = resp
         this.detallPagos = resp.payments
-       this.detallFacturas = resp.invoices
+        this.detallFacturas = resp.invoices
+    })
 
-      })
+    // this._facturas.GetLoadedInvoicesDummie()
+    // .subscribe( resp => {
+    //    this.detalleEmpresa = resp
+    //     this.detallPagos = resp.payments
+    //    this.detallFacturas = resp.invoices
+
+    //   })
 
 
 
@@ -110,7 +102,21 @@ export class HistorialFacturasComponent  {
 
   SaveLoadedInvoices(elemt:any){
 
-    this._facturas.SaveLoadedInvoices(elemt)
+      let {factura_id,fechaFacturacion,version,detail} = elemt
+
+      let req = {
+        "invoices" :[
+          {
+            factura_id,
+            fechaFacturacion,
+            version,
+            detail
+          }
+        ]
+      }
+    console.log(req)
+
+    this._facturas.SaveLoadedInvoices(req)
     .subscribe(
 
       resp=> {
@@ -136,7 +142,21 @@ export class HistorialFacturasComponent  {
 
   }
   GeneratePayableAcconting(elemt:any){
-    this._facturas.GeneratePayableAcconting(elemt)
+
+
+    let {factura_id,fechaFacturacion,version,detail} = elemt
+
+    let req = {
+      "invoices" :[
+        {
+          factura_id,
+          fechaFacturacion,
+          version,
+          detail
+        }
+      ]
+    }
+    this._facturas.GeneratePayableAcconting(req)
     .subscribe(
 
       resp=> {

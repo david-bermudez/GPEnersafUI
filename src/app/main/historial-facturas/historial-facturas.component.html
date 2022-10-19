@@ -89,15 +89,6 @@
             </ng-container>
 
 
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFacturasdetalle"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFacturasdetalle;  let i = index"></tr>
-                  </table>
-                </div>
-
-            </ng-container>
-
-
             <ng-container matColumnDef="expandedDetailFactura">
               <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
                 <div class="example-element-detail">
@@ -128,6 +119,15 @@
             </ng-container>
 
 
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFacturasdetalle"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFacturasdetalle;  let i = index"></tr>
+                  </table>
+                </div>
+
+            </ng-container>
 
 
 
