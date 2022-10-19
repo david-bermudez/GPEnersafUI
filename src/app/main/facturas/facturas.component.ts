@@ -27,6 +27,12 @@ export class FacturasComponent implements OnInit {
     public mensajes:any[] = []
     public verDetalle:boolean = true;
     public validacionFinalizada:boolean = false;
+    public progress = {
+      validated : false,
+      invoiced : false,
+      taxed : false,
+      budgeted : false
+    };
 
     dataSource:any
 
@@ -73,8 +79,6 @@ export class FacturasComponent implements OnInit {
 
   }
 
-
-
   obtenerFacturas(){
     console.log("obtenerFacturas");
 
@@ -99,8 +103,7 @@ export class FacturasComponent implements OnInit {
       }
     })
     }else{
-      this._facturas.getInvoice('')
-    .subscribe( info => {
+      this._facturas.getInvoice('').subscribe( info => {
         if( info.length === 0)
         {
           swal.fire({
