@@ -42,6 +42,14 @@ tr.example-element-row:not(.example-expanded-row):active {
   text-align: right;
   justify-content: flex-end;
 }
+.mat-column-suggestedValue {
+  text-align: right;
+  justify-content: flex-end;
+}
+.mat-column-value {
+  text-align: right;
+  justify-content: flex-end;
+}
 /*
 .mat-row .secundario {
   background-color: #5065d8;
