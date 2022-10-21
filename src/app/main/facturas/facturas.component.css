@@ -41,7 +41,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   text-align: right;
 } */
 
-.mat-column-valor {
+.mat-column-Valor {
   text-align: right;
   justify-content: flex-end;
 }
