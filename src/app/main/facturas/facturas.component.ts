@@ -38,7 +38,7 @@ export class FacturasComponent implements OnInit {
 
   // displayedColumns: string[] = ['#', 'Cliente', 'Factura', 'Concepto','Valor Concepto','Fecha Vencimiento','Estado'];
   displayedColumns: string[] = ['Fecha Vencimiento','No','Cliente', 'Version', 'Factura', 'Concepto','Municipio','Estado','getdetails'];
-  displayedColumnsItems: string[] = ['index','Tipo Asiento','Descripcion', 'Valor'];
+  displayedColumnsItems: string[] = ['index','Descripcion', 'Valor'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement: Factura | null |undefined;
   facturaItems: any;
@@ -92,14 +92,24 @@ export class FacturasComponent implements OnInit {
       this._facturas.getInvoice(period.toString())
 
     .subscribe( info => {
-      if( info.length === 0){
+
+
+      if(info){
+
+        if( info.length === 0){
+          swal.fire({
+            title : 'No se encontraron Facturas para el periodo',
+            icon : 'warning',
+          })
+        } else {
+          this.validar = false
+          this.facturacion = info
+        }
+      }else{
+
         swal.fire({
-          title : 'No se encontraron Facturas para el periodo',
-          icon : 'warning',
+          text : info
         })
-      } else {
-        this.validar = false
-        this.facturacion = info
       }
     })
     }else{

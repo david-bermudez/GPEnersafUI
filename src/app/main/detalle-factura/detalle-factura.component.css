@@ -24,34 +24,52 @@ tr.example-element-row:not(.example-expanded-row):active {
   /* width: 100%; */
 }
 
-.mat-row {
+
+
+ .mat-row {
   background-color: #f0f8ff;
 }
 
-.mat-row .invoice-item-header {
-  background-color: #ffffff;
-}
-
-.mat-row .secundario {
-  background-color: #FAFDFF;
-}
-
-/* .mat-row .invoice-item-value {
-  background-color: #FAFDFF;
+.invoice-item-value{
   text-align: right;
-} */
+}
 
-.mat-column-valor {
+.mat-column-Valor {
   text-align: right;
   justify-content: flex-end;
+}
+.mat-column-FechaIngreso {
+  text-align: right;
+  justify-content: flex-end;
+}
+.mat-column-suggestedValue {
+  text-align: right;
+  justify-content: flex-end;
+}
+.mat-column-value {
+  text-align: right;
+  justify-content: flex-end;
+}
+/*
+.mat-row .secundario {
+  background-color: #5065d8;
 }
 
 .mat-row:nth-child(4n-1), .mat-row:nth-child(4n) {
   background-color: #ffffff;
-}
+} */
+
 
 /* .mat-row:nth-child(2n),  .secundario {
   background-color: #ffffff;
 } */
+.guardar{
+  background-color: rgb(144, 144, 208);
+}
+.confirmar{
+background-color: rgb(102, 146, 102);
+}
 
-
+input[type=number] {
+  text-align:right;
+}

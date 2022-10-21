@@ -33,8 +33,10 @@ export class HistorialFacturasComponent  {
   displayedColumnsItems: string[] = ['Consecutivo','Codigo','Valor', 'FechaIngreso'];
   displayedColumnsFacturas: string[] = ['Descripcion','actions'];
   displayedColumnsFacturasdetalle: string[] = ['description','value','suggestedValue'];
+  displayedColumnsFacturasdetalleWithExpand = [...this.displayedColumnsFacturasdetalle, 'expand'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement:  null | undefined;
+  expandedElementDetalle:  null | undefined;
 
   @Input() perido : any ;
 
@@ -68,7 +70,9 @@ export class HistorialFacturasComponent  {
   }
 
 
-
+  hola(el:any){
+    console.log(el)
+  }
 
 
   obtenerItems(empresa:any){
@@ -79,105 +83,27 @@ export class HistorialFacturasComponent  {
     let month = fecha.getMonth() + 1
     let period = year + month.toString().padStart(2,"0");
 
-    this._facturas.GetLoadedInvoices(empresa,period.toString())
-    .subscribe(resp => {
-      console.log(resp)
-        this.detalleEmpresa = resp
-        this.detallPagos = resp.payments
-        this.detallFacturas = resp.invoices
-    })
-
-    // this._facturas.GetLoadedInvoicesDummie()
-    // .subscribe( resp => {
-    //    this.detalleEmpresa = resp
+    // this._facturas.GetLoadedInvoices(empresa,period.toString())
+    // .subscribe(resp => {
+    //   console.log(resp)
+    //     this.detalleEmpresa = resp
     //     this.detallPagos = resp.payments
-    //    this.detallFacturas = resp.invoices
+    //     this.detallFacturas = resp.invoices
+    // })
 
-    //   })
+    this._facturas.GetLoadedInvoicesDummie()
+    .subscribe( resp => {
+       this.detalleEmpresa = resp
+        this.detallPagos = resp.payments
+       this.detallFacturas = resp.invoices
 
+      })
 
-
-
-  }
-
-  SaveLoadedInvoices(elemt:any){
-
-      let {factura_id,fechaFacturacion,version,detail} = elemt
-
-      let req = {
-        "invoices" :[
-          {
-            factura_id,
-            fechaFacturacion,
-            version,
-            detail
-          }
-        ]
-      }
-    console.log(req)
-
-    this._facturas.SaveLoadedInvoices(req)
-    .subscribe(
-
-      resp=> {
-
-        let icono = ''
-
-        if(resp.code === '200'){
-
-          icono = 'success'
-        }else{
-          icono = 'error'
-        }
-
-        swal.fire({
-          title: 'Proceso Terminado',
-          text : resp.mensaje,
-          icon : 'info'
-        })
-      }
-    )
 
 
 
   }
-  GeneratePayableAcconting(elemt:any){
 
-
-    let {factura_id,fechaFacturacion,version,detail} = elemt
-
-    let req = {
-      "invoices" :[
-        {
-          factura_id,
-          fechaFacturacion,
-          version,
-          detail
-        }
-      ]
-    }
-    this._facturas.GeneratePayableAcconting(req)
-    .subscribe(
-
-      resp=> {
-
-        let icono = ''
-
-        if(resp.code === '200'){
-
-          icono = 'success'
-        }else{
-          icono = 'error'
-        }
-
-        swal.fire({
-          title: 'Proceso Terminado',
-          text : resp.mensaje,
-          icon : 'info'
-        })
-      }
-    )
-  }
 
 
 

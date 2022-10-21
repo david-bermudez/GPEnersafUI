@@ -9,6 +9,7 @@ import { DetalleErrorComponent } from './detalle-error/detalle-error.component';
 import { HistorialFacturasComponent } from './historial-facturas/historial-facturas.component';
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
+import { DetalleFacturaComponent } from './detalle-factura/detalle-factura.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     FacturasComponent,
     DetalleErrorComponent,
     HistorialFacturasComponent,
-    MainComponent
+    MainComponent,
+    DetalleFacturaComponent
   ],
   imports: [
     CommonModule,

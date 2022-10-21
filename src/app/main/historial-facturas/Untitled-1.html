@@ -1,119 +1,70 @@
+ <table mat-table *ngIf="detallFacturas.length > 0" [dataSource]="detallFacturas" class="secundario" multiTemplateDataRows>
 
-<!-- <div class="container shadow min-vh-100 py-2"> -->
+            <ng-container matColumnDef="Descripcion">
+              <th mat-header-cell *matHeaderCellDef class="secundario"> Descripcion </th>
+              <td mat-cell *matCellDef="let element; let i = index;" class="secundario">
+                <button mat-icon-button aria-label="expand row" (click)="(expandedElementDetalle = expandedElementDetalle === element ? null : element); $event.stopPropagation();hola(element)">
+                  <mat-icon *ngIf="expandedElementDetalle !== element">keyboard_arrow_down</mat-icon>
+                  <mat-icon *ngIf="expandedElementDetalle === element">keyboard_arrow_up</mat-icon>
+                </button>
+                {{element.description}}
+              </td>
+            </ng-container>
 
-
-
-
-    <div class="column  mb-3">
-      <button type="button" class="mr-1" mat-raised-button color="primary">Obtener Facturas</button>
-
-    </div>
-    <div mat-table class="mat-elevation-z8 demo-table">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- id Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element">
-
-                  <mat-expansion-panel hideToggle [expanded]="expandedRows[element.id]" (click)="expand(element)">
-              <mat-expansion-panel-header>
-                {{element.id}}
-              </mat-expansion-panel-header>
-              <div *ngFor="let child of element.facturasDetalle">
-                {{ child.id }}
-              </div>
-            </mat-expansion-panel>
-
-          </td>
-        </ng-container>
-
-        <!-- cliente Column -->
-        <ng-container matColumnDef="cliente">
-          <th mat-header-cell *matHeaderCellDef> cliente </th>
-          <td mat-cell *matCellDef="let element">
-            <mat-expansion-panel hideToggle [expanded]="expandedRows[element.id]" (click)="expand(element)">
-              <mat-expansion-panel-header>
-                {{element.cliente}}
-              </mat-expansion-panel-header>
-              <div *ngFor="let child of element.facturasDetalle">
-                {{ child.text }}
-              </div>
-            </mat-expansion-panel>
-          </td>
-        </ng-container>
-
-        <!-- factura Column -->
-        <ng-container matColumnDef="factura">
-          <th mat-header-cell *matHeaderCellDef> factura </th>
-          <td mat-cell *matCellDef="let element"> {{element.factura}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="valor total">
-          <th mat-header-cell *matHeaderCellDef> valor total </th>
-          <td mat-cell *matCellDef="let element"> {{element.valor_total}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Estado">
-          <th mat-header-cell *matHeaderCellDef> Estado </th>
-          <td mat-cell *matCellDef="let element"> {{element.Estado}} </td>
-        </ng-container>
-        <ng-container matColumnDef="Accion">
-          <th mat-header-cell *matHeaderCellDef> Accion </th>
-          <td mat-cell *matCellDef="let element"> {{element.Accion}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="secundario"> Acciones </th>
+              <td mat-cell *matCellDef="let element; let i = index;" class="secundario">
+                <button mat-raised-button class="guardar" (click)="SaveLoadedInvoices(element)">Guardar</button>
+                <button mat-raised-button class="confirmar" (click)="GeneratePayableAcconting(element)">Confirmar</button>
+              </td>
+            </ng-container>
 
 
-    </div>
-  <!-- </div> -->
+            <ng-container matColumnDef="expandedDetailFactura">
+              <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumnsFacturasdetalleWithExpand.length">
+                <div class="example-element-detail" [@expandedDetailFactura]="element == expandedElementDetalle ? 'expanded' : 'collapsed'">
+                  <table mat-table  [dataSource]="element.detail" multiTemplateDataRows>
 
 
 
-  export interface PeriodicElement {
-    cliente: string;
-    id: number;
-    valor_total: number;
-    Estado: string;
-    facturasDetalle?: any[];
-    accion?: string
-  }
 
-  const ELEMENT_DATA: PeriodicElement[] = [
-    { id: 1, cliente: "Hydrogen", valor_total: 1.0079, Estado: "H", accion:'' },
-    { id: 2, cliente: "Helium", valor_total: 4.0026, Estado: "He", accion:'' },
-    { id: 3, cliente: "Lithium", valor_total: 6.941, Estado: "Li", accion:'' },
-    {
-      id: 4,
-      cliente: "Beryllium",
-      valor_total: 9.0122,
-      Estado: "Be",
-      facturasDetalle: [
-        { id: "4.1", text: "abc 4.1" },
-        { id: "4.2", text: "abc 4.2" },
-        { id: "4.3", text: "abc 4.3" },
-      ], accion:''
-    },
-    { id: 5, cliente: "Boron", valor_total: 10.811, Estado: "B", accion:'' },
-    { id: 6, cliente: "Carbon", valor_total: 12.0107, Estado: "C" , accion:''},
-    { id: 7, cliente: "Nitrogen", valor_total: 14.0067, Estado: "N", accion:'' },
-    { id: 8, cliente: "Oxygen", valor_total: 15.9994, Estado: "O", accion:'' },
-    { id: 9, cliente: "Fluorine", valor_total: 18.9984, Estado: "F" , accion:''},
-    { id: 10, cliente: "Neon", valor_total: 20.1797, Estado: "Ne", accion:'' }
-  ];
 
-  displayedColumns: string[] = ["id", "cliente", "valor total", "Estado","Accion"];
-  dataSource = ELEMENT_DATA;
 
-  expandedRows: { [key: number]: boolean } = {};
 
-  expand(element: PeriodicElement) {
-    this.expandedRows[element.id] = !this.expandedRows[element.id]
-  }
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef class="secundario"> Descripcion </th>
+              <td mat-cell *matCellDef="let element; let i = index;" class="secundario"> {{element.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="value">
+              <th mat-header-cell *matHeaderCellDef class="secundario"> Valor </th>
+              <td mat-cell *matCellDef="let element; let i = index;" class="secundario"> {{element.value | number}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="suggestedValue">
+              <th mat-header-cell *matHeaderCellDef class="secundario"> Valor Sugerido </th>
+              <td mat-cell *matCellDef="let element; let i = index;" class="secundario">
+                <input type="number" [(ngModel)]="element.suggestedValue" value="{\\{element.suggestedValue | number }\\">
+              </td>
+            </ng-container>
+
+
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFacturasdetalle"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFacturasdetalle;  let i = index"></tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetailFactura']" class="example-detail-row"></tr>
+                  </table>
+                </div>
+
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsFacturas"></tr>
+            <tr mat-row *matRowDef="let row ; columns: displayedColumnsFacturas;  let i = index"></tr>
+
+
+
+           </table>
