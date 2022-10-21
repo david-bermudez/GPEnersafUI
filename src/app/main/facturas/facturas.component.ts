@@ -119,9 +119,9 @@ export class FacturasComponent implements OnInit {
     }
   }
 
-  validarFacturas(){
+  validarFacturas(factura: any){
 
-    let invoices = { invoices : this.facturacion };
+    let invoices = { invoices : [ factura ] };
     this.mensajes = []
 
     this._facturas.ValidatePendingInvoice(invoices).subscribe( resp => {

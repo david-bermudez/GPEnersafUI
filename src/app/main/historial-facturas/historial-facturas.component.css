@@ -70,3 +70,6 @@ tr.example-element-row:not(.example-expanded-row):active {
 background-color: rgb(102, 146, 102);
 }
 
+input[type=number] {
+  text-align:right;
+}

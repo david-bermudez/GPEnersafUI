@@ -3,8 +3,6 @@
 
   <!-- todo colocar GetPendingInvoice -->
   <button type="button" class="mr-1" mat-raised-button color="primary" (click)="obtenerFacturas()">Obtener Facturas</button>
-  <!-- ValidatePendingInvoice -->
-  <button type="button" mat-raised-button color="primary" (click)="validarFacturas()" [disabled]="validar">Validar Facturas</button>
 </div>
 
 
@@ -56,45 +54,51 @@
 
         <mat-menu #menu="matMenu" >
 
-          <ng-container ngSwitch="element.avance">
+          <ng-container [ngSwitch]="element.avance">
               <div *ngSwitchCase = "'VA'">
-                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Validado</span>
-                <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar  </i> </span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Estado</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="validarFacturas(element)" ><i class="bi bi-check-circle me-1"></i>Validar</span>
+                <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'CN')" ><i class="bi bi-check-circle me-1">Contabilizar</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'IM')" ><i class="bi bi-check-circle me-1">Impuesto</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'PP')" ><i class="bi bi-check-circle me-1">Presupuestar</i> </span>
               </div>
               <div *ngSwitchCase = "'CP'">
-                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Validado</span>
-                <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar {{element.avance}} </i> </span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Estado</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="validarFacturas(element)" ><i class="bi bi-check-circle me-1"></i>Validar</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'CN')" ><i class="bi bi-check-circle me-1">Contabilizar</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'IM')" ><i class="bi bi-check-circle me-1">Impuesto</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'PP')" ><i class="bi bi-check-circle me-1">Presupuestar</i> </span>
               </div>
               <div *ngSwitchCase = "'CN'">
-                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Validado</span>
-                <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar {{element.avance}} </i> </span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Estado</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="validarFacturas(element)" ><i class="bi bi-check-circle me-1"></i>Validar</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar</i> </span>
                 <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CN')" ><i class="bi bi-check-circle me-1">Contabilizar</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'IM')" ><i class="bi bi-check-circle me-1">Impuesto</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'PP')" ><i class="bi bi-check-circle me-1">Presupuestar</i> </span>
               </div>
               <div *ngSwitchCase = "'IM'">
-                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Validado</span>
-                <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar {{element.avance}} </i> </span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Estado</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="validarFacturas(element)" ><i class="bi bi-check-circle me-1"></i>Validar</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar</i> </span>
                 <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CN')" ><i class="bi bi-check-circle me-1">Contabilizar</i> </span>
                 <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'IM')" ><i class="bi bi-check-circle me-1">Impuesto</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'PP')" ><i class="bi bi-check-circle me-1">Presupuestar</i> </span>
               </div>
               <div *ngSwitchCase = "'PP'">
-                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Validado</span>
-                <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar {{element.avance}} </i> </span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Estado</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="validarFacturas(element)" ><i class="bi bi-check-circle me-1"></i>Validar</span>
+                <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar</i> </span>
                 <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'CN')" ><i class="bi bi-check-circle me-1">Contabilizar</i> </span>
                 <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'IM')" ><i class="bi bi-check-circle me-1">Impuesto</i> </span>
                 <span mat-menu-item ngClass="badge bg-success" (click)="GenerateInvoiceAcconting(element, 'PP')" ><i class="bi bi-check-circle me-1">Presupuestar</i> </span>
               </div>
               <div *ngSwitchDefault>
-                <span mat-menu-item ngClass="badge bg-secondary" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Validado</span>
-                <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar  </i> </span>
+                <span mat-menu-item ngClass="badge bg-secondary" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Estado</span>
+                <span mat-menu-item ngClass="badge bg-secondary" (click)="validarFacturas(element)" ><i class="bi bi-check-circle me-1"></i>Validar</span>
+                <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'CP')" ><i class="bi bi-check-circle me-1">Provisionar</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'CN')" ><i class="bi bi-check-circle me-1">Contabilizar</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'IM')" ><i class="bi bi-check-circle me-1">Impuesto</i> </span>
                 <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element, 'PP')" ><i class="bi bi-check-circle me-1">Presupuestar</i> </span>
