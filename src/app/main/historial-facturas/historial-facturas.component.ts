@@ -70,9 +70,7 @@ export class HistorialFacturasComponent  {
   }
 
 
-  hola(el:any){
-    console.log(el)
-  }
+
 
 
   obtenerItems(empresa:any){
@@ -89,6 +87,9 @@ export class HistorialFacturasComponent  {
         this.detalleEmpresa = resp
         this.detallPagos = resp.payments
         this.detallFacturas = resp.invoices
+    },error => {
+
+      this._facturas.logout()
     })
 
     // this._facturas.GetLoadedInvoicesDummie()

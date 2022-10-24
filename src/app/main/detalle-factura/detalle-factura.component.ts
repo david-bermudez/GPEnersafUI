@@ -61,7 +61,10 @@ export class DetalleFacturaComponent {
         icon : 'info'
       })
     }
-  )
+    ,error => {
+
+      this._facturas.logout()
+    })
 
 
 
@@ -101,7 +104,10 @@ GeneratePayableAcconting(elemt:any){
         icon : 'info'
       })
     }
-  )
+    ,error => {
+
+      this._facturas.logout()
+    })
 }
 
 

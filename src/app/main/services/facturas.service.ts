@@ -3,14 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { DetalleFactura } from '../interfaces/factura.interfaces';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FacturasService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   private baseUrl:string = 'http://localhost:9091/api/EnerSaf';
 
@@ -24,6 +25,7 @@ export class FacturasService {
     );
 
     return this.http.post<any>(`${this.baseUrl}/GetPendingInvoice`,body,{headers})
+
   }
 
 
@@ -148,6 +150,12 @@ export class FacturasService {
     return this.http.post<any>(`${this.baseUrl}/GeneratePayableAcconting`,body,{headers:headers})
 
 
+  }
+
+
+  logout(){
+      this.router.navigateByUrl('./login')
+      localStorage.clear()
   }
 
 

@@ -111,6 +111,10 @@ export class FacturasComponent implements OnInit {
           text : info
         })
       }
+    },error => {
+      swal.fire({
+        text : error
+      })
     })
     }else{
       this._facturas.getInvoice('').subscribe( info => {
@@ -125,6 +129,9 @@ export class FacturasComponent implements OnInit {
           this.facturacion = info
         }
         // console.log(info)
+    },error => {
+
+      this._facturas.logout()
     })
     }
   }
@@ -140,6 +147,9 @@ export class FacturasComponent implements OnInit {
         title : resp.mensaje,
         icon : 'warning',
       })
+    },error => {
+
+      this._facturas.logout()
     })
 
   }
@@ -151,36 +161,14 @@ export class FacturasComponent implements OnInit {
         title : resp.mensaje,
         icon : 'warning',
       })
+    },error => {
+
+      this._facturas.logout()
     })
 
   }
 
-  obtenerMensajeIndividuales(){
 
-    for(let i = 0 ; i < this.mensajes.length; i++)
-    {
-      debugger
-      if(this.mensajes[i].id === this.facturacion[i].factura_id){
-
-          return ''
-      }
-    }
-
-    return 'oe'
-
-  }
-
-  hola(factura:any,index:number){
-    debugger
-    for(let i = 0 ; i < this.mensajes.length; i++)
-    {
-      if(this.mensajes[i].id === factura.factura_id){
-
-          return this.mensajes[i].code
-      }
-    }
-
-  }
 
 
   openDialog(factura:any) {
@@ -237,6 +225,9 @@ export class FacturasComponent implements OnInit {
           title : resp.mensaje,
           icon : 'warning',
         })
+      },error => {
+
+        this._facturas.logout()
       })
   }
 }
