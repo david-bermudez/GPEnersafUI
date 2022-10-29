@@ -41,7 +41,7 @@
             <div class="p-2 flex-fill bd-highlight"> total Facturas : {{detalleEmpresa.totalInvoice |number}}</div>
             <div class="p-2 flex-fill bd-highlight">Total Pagos : {{detalleEmpresa.totalPayment | number}} </div>
             <div class="p-2 flex-fill bd-highlight">Diferencia : {{detalleEmpresa.difference | number}} </div>
-            <div class="p-2 flex-fill bd-highlight">Sumatoria : {{sumatoria | number}} </div>
+            <!-- <div class="p-2 flex-fill bd-highlight">Sumatoria : {{sumatoria | number}} </div> -->
           </div>
 
           <table *ngIf="detallPagos" mat-table [dataSource]="detallPagos" class="secundario" >
