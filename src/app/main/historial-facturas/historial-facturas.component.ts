@@ -56,11 +56,10 @@ export class HistorialFacturasComponent  {
     this._facturas.GetLoadedInvoiceByCompany()
     .subscribe( resp =>{
 
-      if(resp.data.length > 0){
+
         this.facturacion = resp.data
 
-    }else{
-    }
+
   }
 
   )
