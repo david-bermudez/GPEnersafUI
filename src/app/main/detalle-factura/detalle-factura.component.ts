@@ -29,7 +29,7 @@ export class DetalleFacturaComponent {
   columnsToDisplayWithExpand = [...this.displayedColumnsFacturas, 'expand'];
   expandedElement:  null | undefined;
 
-  SaveLoadedInvoices(elemt:any){
+  GeneratePayableAcconting(elemt:any){
 
     let {factura_id,fechaFacturacion,version,detail} = elemt
 
@@ -61,32 +61,32 @@ export class DetalleFacturaComponent {
 
 
 
-  // this._facturas.SaveLoadedInvoices(req)
-  // .subscribe(
+  this._facturas.SaveLoadedInvoices(req)
+  .subscribe(
 
-  //   resp=> {
+    resp=> {
 
-  //     let icono = ''
+      let icono = ''
 
-  //     if(resp.code === '200'){
+      if(resp.code === '200'){
 
-  //       icono = 'success'
-  //     }else{
-  //       icono = 'error'
-  //     }
+        icono = 'success'
+      }else{
+        icono = 'error'
+      }
 
-  //     swal.fire({
-  //       title: 'Proceso Terminado',
-  //       text : resp.mensaje,
-  //       icon : 'info'
-  //     })
-  //   }
-  //   ,error => {
+      swal.fire({
+        title: 'Proceso Terminado',
+        text : resp.mensaje,
+        icon : 'info'
+      })
+    }
+    ,error => {
 
-  //     this._facturas.logout()
-  //   })
+      this._facturas.logout()
+    })
 
-    this.expandedElement = null
+
 
 }
 
@@ -106,7 +106,7 @@ onChange(ob:any,item:any) {
 
   // console.log(this.seleccionado)
 }
-GeneratePayableAcconting(elemt:any){
+SaveLoadedInvoices(elemt:any){
 
 
   let {factura_id,fechaFacturacion,version,detail} = elemt

@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   miFormulario: FormGroup = this.fb.group({
 
-    username:['dbermudez', [Validators.required]],
-    password:['12345', [Validators.required]],
+    username:['ahernandezd@gecelca.com.co', [Validators.required]],
+    password:['Gecelca2022H', [Validators.required]],
 
   })
 
