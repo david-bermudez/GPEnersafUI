@@ -4,6 +4,8 @@
  <h4 *ngIf="detallFacturas.length > 0" ><strong>Facturas</strong></h4>
 <table  mat-table *ngIf="detallFacturas.length > 0" [dataSource]="detallFacturas" class="secundario" multiTemplateDataRows>
 
+
+
   <ng-container matColumnDef="detalle">
     <th mat-header-cell *matHeaderCellDef class="secundario"> Descripcion </th>
     <td mat-cell *matCellDef="let element; let i = index;" class="secundario">
@@ -40,6 +42,19 @@
              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
 
              <table  mat-table  [dataSource]="element.detail" >
+
+              <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox  hidden>
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row; let i = index;">
+                  <mat-checkbox  (change)="onChange($event,row)"
+                  >
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+
 
               <ng-container matColumnDef="description">
                 <th mat-header-cell *matHeaderCellDef class="secundario"> Descripcion </th>

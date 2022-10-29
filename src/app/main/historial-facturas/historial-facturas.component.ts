@@ -30,7 +30,7 @@ export interface PeriodicElement {
 export class HistorialFacturasComponent  {
   dataSource :any;
   displayedColumns = ['Cliente','getdetails'];
-  displayedColumnsItems: string[] = ['Consecutivo','Codigo','Valor', 'FechaIngreso'];
+  displayedColumnsItems: string[] = ['select','Consecutivo','Codigo','Valor', 'FechaIngreso'];
   displayedColumnsFacturas: string[] = ['Descripcion','actions'];
   displayedColumnsFacturasdetalle: string[] = ['description','value','suggestedValue'];
   displayedColumnsFacturasdetalleWithExpand = [...this.displayedColumnsFacturasdetalle, 'expand'];
@@ -39,24 +39,46 @@ export class HistorialFacturasComponent  {
   expandedElementDetalle:  null | undefined;
 
   @Input() perido : any ;
+  @Input() payments :string = '' ;
 
   public facturacion:any[] = []
   public detalleEmpresa!:DetalleFactura
   public detallPagos:any[] = []
   public detallFacturas:any[] = []
   detailinvioces: any;
+  selected = -1
 
   valor!: number
+  sumatoria: any = 0;
 
   constructor( public _facturas:FacturasService){
 
     this._facturas.GetLoadedInvoiceByCompany()
-    .subscribe( resp =>
+    .subscribe( resp =>{
+
+      if(resp.data.length > 0){
         this.facturacion = resp.data
-      )
+
+    }else{
+    }
+  }
+
+  )
+
+
   }
 
   ngOnInit() {
+
+    this._facturas.RecargarDetalle$.subscribe(
+      resp => {
+
+        if(resp){
+          debugger
+          this._facturas.GetLoadedInvoicesDummie()
+        }
+      }
+    )
 
   }
 
@@ -103,6 +125,31 @@ export class HistorialFacturasComponent  {
 
 
 
+  }
+
+  onChange(ob:any,elem:string,index:number){
+
+    if(ob.checked){
+      this.payments = elem
+
+      // this.sumatoria = this.sumatoria+valor
+      // this.selected = index
+    }else{
+
+
+      // const aux = this.payments.filter( item => item !== elem)
+
+      this.payments = ''
+    }
+    this.checkUnCheck(index)
+    console.log(this.payments,this.sumatoria,index)
+  }
+
+
+
+  checkUnCheck(index:number){
+
+    this.selected = index
   }
 
 

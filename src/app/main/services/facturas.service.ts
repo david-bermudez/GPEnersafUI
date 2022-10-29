@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class FacturasService {
 
   constructor(private http:HttpClient, private router:Router) { }
+
+  RecargarDetalle$ = new EventEmitter<boolean>();
 
   private baseUrl:string = 'http://localhost:9091/api/EnerSaf';
 

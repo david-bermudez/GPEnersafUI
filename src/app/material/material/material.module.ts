@@ -17,6 +17,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input'
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio'
 
 
 
@@ -47,7 +49,9 @@ import {MatMenuModule} from '@angular/material/menu';
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

@@ -1,5 +1,7 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatRadioChange } from '@angular/material/radio';
 import swal from 'sweetalert2';
 import { FacturasService } from '../services/facturas.service';
 
@@ -19,9 +21,11 @@ export class DetalleFacturaComponent {
 
 
   @Input() detallFacturas:any
+  @Input() payments:any
+  seleccionado: string[] = [];
   constructor(private _facturas:FacturasService) { }
   displayedColumnsFacturas: string[] = ['detalle','actions'];
-  displayedColumnsFacturasdetalle: string[] = ['description','value','suggestedValue'];
+  displayedColumnsFacturasdetalle: string[] = ['select','description','value','suggestedValue'];
   columnsToDisplayWithExpand = [...this.displayedColumnsFacturas, 'expand'];
   expandedElement:  null | undefined;
 
@@ -29,45 +33,78 @@ export class DetalleFacturaComponent {
 
     let {factura_id,fechaFacturacion,version,detail} = elemt
 
+      // if(this.seleccionado === undefined){
+
+      //    swal.fire({
+      //     icon:'info',
+      //     text: 'Debe Selecccionar la factura a procesar'
+      //   })
+      //   return
+      // }
+
     let req = {
       "invoices" :[
         {
           factura_id,
           fechaFacturacion,
           version,
-          detail
+          detail : this.seleccionado
         }
-      ]
+      ],
+      "payments" : [ {
+        code :this.payments
+
+      }
+    ]
     }
   console.log(req)
 
-  this._facturas.SaveLoadedInvoices(req)
-  .subscribe(
-
-    resp=> {
-
-      let icono = ''
-
-      if(resp.code === '200'){
-
-        icono = 'success'
-      }else{
-        icono = 'error'
-      }
-
-      swal.fire({
-        title: 'Proceso Terminado',
-        text : resp.mensaje,
-        icon : 'info'
-      })
-    }
-    ,error => {
-
-      this._facturas.logout()
-    })
 
 
+  // this._facturas.SaveLoadedInvoices(req)
+  // .subscribe(
 
+  //   resp=> {
+
+  //     let icono = ''
+
+  //     if(resp.code === '200'){
+
+  //       icono = 'success'
+  //     }else{
+  //       icono = 'error'
+  //     }
+
+  //     swal.fire({
+  //       title: 'Proceso Terminado',
+  //       text : resp.mensaje,
+  //       icon : 'info'
+  //     })
+  //   }
+  //   ,error => {
+
+  //     this._facturas.logout()
+  //   })
+
+    this.expandedElement = null
+
+}
+
+onChange(ob:any,item:any) {
+  if(ob.checked){
+
+    this.seleccionado.push(item)
+  }else{
+
+    const aux = this.seleccionado.filter(value => value !== item )
+
+    // console.log(aux)
+
+
+    this.seleccionado = aux
+  }
+
+  // console.log(this.seleccionado)
 }
 GeneratePayableAcconting(elemt:any){
 

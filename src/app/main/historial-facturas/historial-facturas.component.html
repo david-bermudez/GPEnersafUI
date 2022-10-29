@@ -41,13 +41,26 @@
             <div class="p-2 flex-fill bd-highlight"> total Facturas : {{detalleEmpresa.totalInvoice |number}}</div>
             <div class="p-2 flex-fill bd-highlight">Total Pagos : {{detalleEmpresa.totalPayment | number}} </div>
             <div class="p-2 flex-fill bd-highlight">Diferencia : {{detalleEmpresa.difference | number}} </div>
+            <div class="p-2 flex-fill bd-highlight">Sumatoria : {{sumatoria | number}} </div>
           </div>
 
           <table *ngIf="detallPagos" mat-table [dataSource]="detallPagos" class="secundario" >
 
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox  hidden>
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row; let i = index;">
+                <mat-checkbox [checked]="selected === i" (change)="onChange($event,row.code,i)"
+                >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
             <ng-container matColumnDef="Consecutivo">
               <th mat-header-cell *matHeaderCellDef class="secundario"> Consecutivo </th>
-              <td mat-cell *matCellDef="let element; let i = index;" class="secundario"> {{element.consecutive}} </td>
+              <td mat-cell *matCellDef="let element; " class="secundario"> {{element.consecutive}} </td>
             </ng-container>
 
             <!-- Name Column -->
@@ -72,7 +85,7 @@
            </table>
            <br>
 
-          <app-detalle-factura [detallFacturas]="detallFacturas"></app-detalle-factura>
+          <app-detalle-factura [detallFacturas]="detallFacturas" [payments]="payments" ></app-detalle-factura>
 
 
 

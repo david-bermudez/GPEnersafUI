@@ -82,16 +82,16 @@
         "suggestedValue" : 234234234.0
       },
       {
-        "id" : 1123,
-        "description" : "CONCEPTO MARGEN C" ,
-        "value": 1344322.0,
-        "suggestedValue" : 234234234.0
+        "id" : 1124,
+        "description" : "CONCEPTO" ,
+        "value": 1344388.0,
+        "suggestedValue" : 234234000.0
       },
       {
-        "id" : 1123,
-        "description" : "CONCEPTO MARGEN C" ,
-        "value": 1344322.0,
-        "suggestedValue" : 234234234.0
+        "id" : 1125,
+        "description" : "MARGEN C" ,
+        "value": 1344690.0,
+        "suggestedValue" : 234234666.0
       }
     ]
       }
