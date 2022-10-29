@@ -61,7 +61,7 @@ export class DetalleFacturaComponent {
 
 
 
-  this._facturas.SaveLoadedInvoices(req)
+  this._facturas.GeneratePayableAcconting(req)
   .subscribe(
 
     resp=> {
@@ -121,7 +121,7 @@ SaveLoadedInvoices(elemt:any){
       }
     ]
   }
-  this._facturas.GeneratePayableAcconting(req)
+  this._facturas.SaveLoadedInvoices(req)
   .subscribe(
 
     resp=> {

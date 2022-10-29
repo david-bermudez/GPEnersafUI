@@ -110,6 +110,15 @@
 
 
           </ng-container>
+
+          <ng-container [ngSwitch]="element.tipo_factura">
+            <div *ngSwitchCase = "'Nota Credito'">
+              <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element,'RV')" ><i class="bi bi-check-circle me-1"></i>Reversion</span>
+            </div>
+            <div *ngSwitchCase = "'Nota Debito'">
+              <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element,'RV')" ><i class="bi bi-check-circle me-1"></i>Reversion</span>
+            </div>
+          </ng-container>
         </mat-menu>
 
     </td>
