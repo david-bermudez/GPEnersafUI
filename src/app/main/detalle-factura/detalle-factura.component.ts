@@ -84,6 +84,9 @@ export class DetalleFacturaComponent {
         text : resp.mensaje,
         icon : 'info'
       })
+
+      this._facturas.RecargarDetalle$.emit(true)
+
     }
     ,error => {
 

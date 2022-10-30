@@ -72,10 +72,7 @@ export class HistorialFacturasComponent  {
     this._facturas.RecargarDetalle$.subscribe(
       resp => {
 
-        if(resp){
-          debugger
-          this._facturas.GetLoadedInvoicesDummie()
-        }
+        this.expandedElement = null
       }
     )
 
