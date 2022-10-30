@@ -58,9 +58,8 @@ export class DetalleFacturaComponent {
       }
 
     ],
-    "GroupName" : [{
-      "groupName" : group_id
-    }]
+    "GroupName" : group_id
+
     }
   console.log(req)
 
