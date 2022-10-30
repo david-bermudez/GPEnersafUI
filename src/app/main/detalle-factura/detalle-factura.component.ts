@@ -32,6 +32,7 @@ export class DetalleFacturaComponent {
   GeneratePayableAcconting(elemt:any){
 
     let {factura_id,fechaFacturacion,version,detail} = elemt
+    let { code, group_id} = this.payments
 
       // if(this.seleccionado === undefined){
 
@@ -52,10 +53,14 @@ export class DetalleFacturaComponent {
         }
       ],
       "payments" : [ {
-        code :this.payments
+        code
 
       }
-    ]
+
+    ],
+    "GroupName" : [{
+      "groupName" : group_id
+    }]
     }
   console.log(req)
 
