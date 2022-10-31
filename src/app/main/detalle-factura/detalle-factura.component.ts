@@ -31,7 +31,7 @@ export class DetalleFacturaComponent {
 
   GeneratePayableAcconting(elemt:any){
 
-    let {factura_id,fechaFacturacion,version,detail} = elemt
+    let {factura_id,fechaFacturacion,version} = elemt
     let { code, group_id} = this.payments
 
       // if(this.seleccionado === undefined){
@@ -84,7 +84,7 @@ export class DetalleFacturaComponent {
         text : resp.mensaje,
         icon : 'info'
       })
-
+      this.seleccionado = []
       this._facturas.RecargarDetalle$.emit(true)
 
     }
@@ -111,7 +111,7 @@ onChange(ob:any,item:any) {
     this.seleccionado = aux
   }
 
-  // console.log(this.seleccionado)
+  console.log(this.seleccionado)
 }
 SaveLoadedInvoices(elemt:any){
 
