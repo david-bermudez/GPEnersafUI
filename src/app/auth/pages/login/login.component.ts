@@ -38,16 +38,23 @@ export class LoginComponent implements OnInit {
     .subscribe(resp =>  {
       console.log(resp)
       if(resp){
-        this.router.navigateByUrl('/inicio')
+          this.router.navigateByUrl('/inicio')
 
         }else{
             swal.fire({
               icon : 'error',
               title :'Error',
-              text : resp
+              text : 'Usuario y contraseña no son correctos.'
             })
         }
+      }, error => {
+        swal.fire({
+          icon : 'error',
+          title :'Error',
+          text : 'Usuario y contraseña no son correctos'
+        })
       })
+
 
   }
 
