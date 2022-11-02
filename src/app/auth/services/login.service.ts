@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { authResponse, Usuario, Login } from '../interfaces/auth.interfaces';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
-  private baseUrl:string = 'http://localhost:9091/auth/Login';
+  private baseUrl:string = environment.login;
 
   private _user! : Usuario ;
 

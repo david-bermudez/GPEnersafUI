@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { DetalleFactura } from '../interfaces/factura.interfaces';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class FacturasService {
 
   RecargarDetalle$ = new EventEmitter<boolean>();
 
-  private baseUrl:string = 'http://localhost:9091/api/EnerSaf';
+  private baseUrl:string = environment.apiUrl;
 
   getInvoice(Periodo:any){
     console.log(Periodo);
