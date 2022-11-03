@@ -93,7 +93,13 @@ export class HistorialFacturasComponent  {
 
   obtenerItems(empresa:any){
 
-
+    if(this.perido === undefined || this.perido === ''){
+      swal.fire({
+        icon: 'info',
+        text : 'debe seleccionar un periodo'
+      })
+        return
+    }
     let fecha = new Date(this.perido)
     let year  = fecha.getFullYear()
     let month = fecha.getMonth() + 1

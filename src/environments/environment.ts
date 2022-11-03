@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl : 'http://localhost:9091/api/EnerSaf',
-  login: 'http://localhost:9091/auth/Login'
+  apiUrl : 'http://172.16.1.100:9091/GpEnersafAPI/api/EnerSaf',
+  login: 'http://172.16.1.100:9091/GpEnersafAPI/auth/Login'
 };
 
 /*
