@@ -1,10 +1,5 @@
-
-
-
  <h4 *ngIf="detallFacturas.length > 0" ><strong>Facturas</strong></h4>
 <table  mat-table *ngIf="detallFacturas.length > 0" [dataSource]="detallFacturas" class="secundario" multiTemplateDataRows>
-
-
 
   <ng-container matColumnDef="detalle">
     <th mat-header-cell *matHeaderCellDef class="secundario"> Descripcion </th>
@@ -24,10 +19,6 @@
       <button mat-raised-button class="confirmar" (click)="GeneratePayableAcconting(element)">Confirmar</button>
     </td>
   </ng-container>
-
-
-
-
 
     <!-- <ng-container matColumnDef="getdetails">
       <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
@@ -77,8 +68,6 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumnsFacturasdetalle;  let i = index"></tr>
              </table>
 
-
-
         </div>
       </td>
     </ng-container>
@@ -93,12 +82,6 @@
     </td>
     </ng-container> -->
 
-
-
-
-
-
-
     <tr mat-header-row *matHeaderRowDef="displayedColumnsFacturas"></tr>
     <tr mat-row *matRowDef="let element; columns: displayedColumnsFacturas;"
         class="example-element-row"
@@ -106,9 +89,4 @@
        >
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-
-
-
-
     </table>
-

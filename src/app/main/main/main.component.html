@@ -13,18 +13,14 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Sistema de Integracion - Facturador Comercial</h1>
-
+      <h1>Sistema de Integración - Facturador Comercial</h1>
    </div>
 
-
-
     <!-- <input matInput [matDatepicker]="picker" [(ngModel)]="periodo" (dateChange)="periodChange($event)" >
-
     <mat-datepicker-toggle matSuffix   [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker> -->
 
-    <mat-label>Selecciona un Periodo </mat-label>
+    <mat-label>Período de Facturación</mat-label>
     <input matInput [matDatepicker]="dob" [(ngModel)]="periodo">
     <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
     <mat-datepicker #dob></mat-datepicker>
@@ -52,7 +48,7 @@
 
             </mat-tab>
 
-            <mat-tab label="Pagos Realizados">
+            <mat-tab label="Aplicacion de Pagos">
               <app-historial-facturas [perido]="periodo" ></app-historial-facturas>
             </mat-tab>
 
