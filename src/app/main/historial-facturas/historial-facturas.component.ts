@@ -96,7 +96,7 @@ export class HistorialFacturasComponent  {
     if(this.perido === undefined || this.perido === ''){
       swal.fire({
         icon: 'info',
-        text : 'debe seleccionar un periodo'
+        text : 'debe seleccionar un Período de Facturación'
       })
         return
     }
