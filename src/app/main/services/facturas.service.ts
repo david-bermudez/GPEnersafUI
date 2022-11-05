@@ -154,6 +154,29 @@ export class FacturasService {
 
 
   }
+  GenerateMenuInvoices(factura:any){
+
+
+    let {fechafacturacion,version,factura_id} = factura
+    let body = {
+      Fechafacturacion : fechafacturacion
+      ,Version:version
+      ,Factura_id:factura_id
+    }
+
+    console.log(body)
+    let headers = new HttpHeaders()
+
+    headers = headers.append(
+      'Authorization',
+      'bearer ' + localStorage.getItem('token')
+    );
+
+
+    return this.http.post<any>(`${this.baseUrl}/GenerateMenuInvoices`,body,{headers:headers})
+
+
+  }
 
 
   logout(){

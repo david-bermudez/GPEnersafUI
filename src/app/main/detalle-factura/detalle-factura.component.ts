@@ -17,17 +17,29 @@ import { FacturasService } from '../services/facturas.service';
     ]),
   ],
 })
-export class DetalleFacturaComponent {
+export class DetalleFacturaComponent implements OnInit {
 
 
   @Input() detallFacturas:any
   @Input() payments:any
   seleccionado: string[] = [];
-  constructor(private _facturas:FacturasService) { }
+  constructor(private _facturas:FacturasService) {
+
+  }
   displayedColumnsFacturas: string[] = ['detalle','actions'];
   displayedColumnsFacturasdetalle: string[] = ['select','description','value','suggestedValue'];
   columnsToDisplayWithExpand = [...this.displayedColumnsFacturas, 'expand'];
   expandedElement:  null | undefined;
+  isModify : boolean = false
+
+  ngOnInit(): void {
+
+    let perfil = localStorage.getItem('profile')
+    if(perfil === 'MODIFY'){
+      this.isModify = true;
+    }
+
+  }
 
   GeneratePayableAcconting(elemt:any){
 

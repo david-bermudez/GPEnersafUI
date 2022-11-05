@@ -32,6 +32,7 @@ export class LoginService {
         if(resp.access_token){
           localStorage.setItem('token',resp.access_token!)
           localStorage.setItem('usuario',resp.username!)
+          localStorage.setItem('profile',resp.profile!)
 
         }
       }),

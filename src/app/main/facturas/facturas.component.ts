@@ -33,6 +33,7 @@ export class FacturasComponent implements OnInit {
       taxed : false,
       budgeted : false
     };
+    public menus:any[] = []
 
     dataSource:any
 
@@ -229,6 +230,17 @@ export class FacturasComponent implements OnInit {
 
         this._facturas.logout()
       })
+  }
+
+  consola(index:number){
+    this._facturas.GenerateMenuInvoices(index)
+    .subscribe( resp =>
+      {
+        this.menus =resp
+        console.log(this.menus)
+      }
+      )
+
   }
 }
 
