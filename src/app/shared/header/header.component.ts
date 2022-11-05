@@ -19,4 +19,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout(){
+    console.log('me sali')
+    localStorage.clear()
+  }
+
 }

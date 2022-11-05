@@ -98,7 +98,7 @@ export class FacturasComponent implements OnInit {
 
         if( info.length === 0){
           swal.fire({
-            title : 'No se encontraron Facturas para el periodo',
+            title : 'No se encontraron Facturas para el Período',
             icon : 'warning',
           })
         } else {
@@ -121,7 +121,7 @@ export class FacturasComponent implements OnInit {
         if( info.length === 0)
         {
           swal.fire({
-            title : 'No se encontraron Facturas para el periodo',
+            title : 'No se encontraron Facturas para el período',
             icon : 'warning',
           })
         }else{

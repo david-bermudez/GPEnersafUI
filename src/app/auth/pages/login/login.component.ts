@@ -36,24 +36,21 @@ export class LoginComponent implements OnInit {
     console.log(username,password)
     this.authService.login(username,password)
     .subscribe(resp =>  {
-      console.log(resp)
-      if(resp){
+      console.log(resp.access_token)
+      debugger
+      if(localStorage.getItem('token')){
           this.router.navigateByUrl('/inicio')
 
-        }else{
+      }
+      else{
             swal.fire({
               icon : 'error',
               title :'Error',
-              text : 'Usuario y contraseña no son correctos.'
+              text : resp
             })
         }
-      }, error => {
-        swal.fire({
-          icon : 'error',
-          title :'Error',
-          text : 'Usuario y contraseña no son correctos'
-        })
-      })
+      }
+      )
 
 
   }

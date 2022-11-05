@@ -35,8 +35,8 @@ export class LoginService {
 
         }
       }),
-      map(resp => resp.access_token),
-      catchError(err => of(err.error.msg))
+      map(resp => resp.username),
+      catchError(err => of(err.error.error.message))
     )
 
   }
