@@ -43,18 +43,18 @@
     <td mat-cell *matCellDef="let element"> {{element.municipio_id}} - {{element.municipio_nombre}} - {{element.departamento_nombre}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="Estado">
-    <th mat-header-cell *matHeaderCellDef>Opciones</th>
-    <td  mat-cell *matCellDef="let element; let i = index;">
+  <ng-container  matColumnDef="Estado">
+    <th  mat-header-cell *matHeaderCellDef  >Opciones</th>
+    <td  mat-cell *matCellDef="let element; let i = index;" >
 
-        <button *ngIf="element.avance" mat-icon-button [matMenuTriggerFor]="menu" (click)="consola(element)" aria-label="Example icon-button with a menu">
+        <button *ngIf="element.avance && isModify" mat-icon-button [matMenuTriggerFor]="menu" (click)="ObtenerOpcionesMenu(element)" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
 
         <mat-menu #menu="matMenu"  >
           <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Estado</span>
           <span mat-menu-item ngClass="badge bg-success" (click)="validarFacturas(element)" ><i class="bi bi-check-circle me-1"></i>Validar</span>
-           <span *ngFor="let accion of menus" mat-menu-item>{{accion.name}}</span>
+           <span *ngFor="let accion of menus" [ngClass]="{'badge bg-success': accion.isActive === 'true', 'badge bg-secondary' : accion.isActive === 'false' }" (click)="GenerateInvoiceAcconting(element, accion.action)" mat-menu-item>{{accion.name}}</span>
           <!-- <ng-container [ngSwitch]="element.tipo_factura">
             <div *ngSwitchCase = "'Nota Credito'">
               <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element,'RV')" ><i class="bi bi-check-circle me-1"></i>Reversion</span>

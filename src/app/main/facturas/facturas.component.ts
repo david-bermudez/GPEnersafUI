@@ -50,7 +50,15 @@ export class FacturasComponent implements OnInit {
     this.obtenerFacturas()
   }
 
+  isModify : boolean = false
+
   ngOnInit(): void {
+
+    let perfil = localStorage.getItem('profile')
+    if(perfil === 'MODIFY'){
+      this.isModify = true;
+    }
+
   }
 
   expandedSymbol: string = '';
@@ -232,8 +240,8 @@ export class FacturasComponent implements OnInit {
       })
   }
 
-  consola(index:number){
-    this._facturas.GenerateMenuInvoices(index)
+  ObtenerOpcionesMenu(factura:number){
+    this._facturas.GenerateMenuInvoices(factura)
     .subscribe( resp =>
       {
         this.menus =resp
