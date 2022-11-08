@@ -54,4 +54,11 @@ tr.example-element-row:not(.example-expanded-row):active {
   background-color: #ffffff;
 } */
 
+#botones{
+
+  overflow-x: hidden !important;
+}
+
+
+
 

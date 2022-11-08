@@ -3,6 +3,8 @@
 
   <!-- todo colocar GetPendingInvoice -->
   <button type="button" class="mr-1" mat-raised-button color="primary" (click)="obtenerFacturas()">Obtener Facturas</button>
+  <button type="button" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('CP')">Proyectar</button>
+  <button type="button" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('CN')">Contabilizar</button>
 </div>
 
 <table *ngIf="facturacion.length > 0" mat-table [dataSource]="facturacion" class="mat-elevation-z8" multiTemplateDataRows>
@@ -51,19 +53,19 @@
           <mat-icon>more_vert</mat-icon>
         </button>
 
-        <mat-menu #menu="matMenu"  >
+         <mat-menu #menu="matMenu"  >
           <span mat-menu-item ngClass="badge bg-success" (click)="obtenerErrorFactura(element)" ><i class="bi bi-check-circle me-1"></i>Estado</span>
           <span mat-menu-item ngClass="badge bg-success" (click)="validarFacturas(element)" ><i class="bi bi-check-circle me-1"></i>Validar</span>
-           <span *ngFor="let accion of menus" [ngClass]="{'badge bg-success': accion.isActive === 'true', 'badge bg-secondary' : accion.isActive === 'false' }" (click)="GenerateInvoiceAcconting(element, accion.action)" mat-menu-item>{{accion.name}}</span>
-          <!-- <ng-container [ngSwitch]="element.tipo_factura">
+           <!-- <span *ngFor="let accion of menus" [ngClass]="{'badge bg-success': accion.isActive === 'true', 'badge bg-secondary' : accion.isActive === 'false' }" (click)="GenerateInvoiceAcconting(element, accion.action)" mat-menu-item>{{accion.name}}</span> -->
+          <ng-container [ngSwitch]="element.tipo_factura">
             <div *ngSwitchCase = "'Nota Credito'">
-              <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element,'RV')" ><i class="bi bi-check-circle me-1"></i>Reversion</span>
+              <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting('RV')" ><i class="bi bi-check-circle me-1"></i>Reversion</span>
             </div>
             <div *ngSwitchCase = "'Nota Debito'">
-              <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting(element,'RV')" ><i class="bi bi-check-circle me-1"></i>Reversion</span>
+              <span mat-menu-item ngClass="badge bg-secondary" (click)="GenerateInvoiceAcconting('RV')" ><i class="bi bi-check-circle me-1"></i>Reversion</span>
             </div>
           </ng-container> -->
-        </mat-menu>
+         </mat-menu>
 
     </td>
 

@@ -227,8 +227,20 @@ export class FacturasComponent implements OnInit {
     .subscribe( console.log)
   }
 
-  GenerateInvoiceAcconting(factura:any ,tipoContabilizacion : string){
-      this._facturas.GenerateInvoiceAcconting(factura , tipoContabilizacion).subscribe( resp => {
+  GenerateInvoiceAcconting(tipoContabilizacion : string){
+
+    if(this.perido === undefined || this.perido === ''){
+      swal.fire({
+        icon: 'info',
+        text : 'debe seleccionar un Período de Facturación'
+      })
+        return
+    }
+    let fecha = new Date(this.perido)
+    let year  = fecha.getFullYear()
+    let month = fecha.getMonth() + 1
+    let period = year + month.toString().padStart(2,"0");
+      this._facturas.GenerateInvoiceAcconting(period.toString() , tipoContabilizacion).subscribe( resp => {
         this.validacionFinalizada = true;
         swal.fire({
           title : resp.mensaje,

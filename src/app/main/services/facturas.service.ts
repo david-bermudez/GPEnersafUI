@@ -76,14 +76,12 @@ export class FacturasService {
     return this.http.post<any>(`${this.baseUrl}/GetErrorInvoice`,body,{headers})
   }
 
-  GenerateInvoiceAcconting(factura:any, tipo:string){
-    let {fechafacturacion,version,factura_id} = factura
+  GenerateInvoiceAcconting(Periodo:any, Interfase:string){
+    // let {fechafacturacion,version,factura_id} = factura
     // fechafacturacion = this.formatDate(fechafacturacion)
     let body = {
-                  "Fechafacturacion" :fechafacturacion,
-                  "Version"    : version,
-                  "Factura_id" : factura_id,
-                  "Interfase"  : tipo
+                  Periodo,
+                  Interfase
                }
     let headers = new HttpHeaders()
     headers = headers.append(
