@@ -22,7 +22,7 @@ import swal from 'sweetalert2';
 
 export class FacturasComponent implements OnInit {
 
-    public validar:boolean = true
+  public validar:boolean = true
     public facturacion:any[] = []
     public mensajes:any[] = []
     public verDetalle:boolean = true;
@@ -34,11 +34,12 @@ export class FacturasComponent implements OnInit {
       budgeted : false
     };
     public menus:any[] = []
+    seleccionado: string[] = [];
 
     dataSource:any
 
   // displayedColumns: string[] = ['#', 'Cliente', 'Factura', 'Concepto','Valor Concepto','Fecha Vencimiento','Estado'];
-  displayedColumns: string[] = ['Fecha Vencimiento','No','Cliente', 'Version', 'Factura', 'Concepto','Municipio','Estado','getdetails'];
+  displayedColumns: string[] = ['select','Fecha Vencimiento','No','Cliente', 'Version', 'Factura', 'Concepto','Municipio','Estado','getdetails'];
   displayedColumnsItems: string[] = ['index','Descripcion', 'Valor'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement: Factura | null |undefined;
@@ -229,18 +230,8 @@ export class FacturasComponent implements OnInit {
 
   GenerateInvoiceAcconting(tipoContabilizacion : string){
 
-    if(this.perido === undefined || this.perido === ''){
-      swal.fire({
-        icon: 'info',
-        text : 'debe seleccionar un Período de Facturación'
-      })
-        return
-    }
-    let fecha = new Date(this.perido)
-    let year  = fecha.getFullYear()
-    let month = fecha.getMonth() + 1
-    let period = year + month.toString().padStart(2,"0");
-      this._facturas.GenerateInvoiceAcconting(period.toString() , tipoContabilizacion).subscribe( resp => {
+
+      this._facturas.GenerateInvoiceAcconting(this.seleccionado , tipoContabilizacion).subscribe( resp => {
         this.validacionFinalizada = true;
         swal.fire({
           title : resp.mensaje,
@@ -261,6 +252,25 @@ export class FacturasComponent implements OnInit {
       }
       )
 
+  }
+
+
+  onChange(ob:any,item:any) {
+
+    if(ob.checked){
+
+      this.seleccionado.push(item)
+    }else{
+
+      const aux = this.seleccionado.filter(value => value !== item )
+
+      // console.log(aux)
+
+
+      this.seleccionado = aux
+    }
+
+    console.log(this.seleccionado)
   }
 }
 

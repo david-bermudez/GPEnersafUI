@@ -10,6 +10,19 @@
 <table *ngIf="facturacion.length > 0" mat-table [dataSource]="facturacion" class="mat-elevation-z8" multiTemplateDataRows>
 
 <!--  -->
+
+<ng-container matColumnDef="select">
+  <th mat-header-cell *matHeaderCellDef>
+    <mat-checkbox  hidden>
+    </mat-checkbox>
+  </th>
+  <td mat-cell *matCellDef="let row; let i = index;">
+    <mat-checkbox  (change)="onChange($event,row)"
+    >
+    </mat-checkbox>
+  </td>
+</ng-container>
+
 <ng-container matColumnDef="No">
   <th mat-header-cell *matHeaderCellDef> No </th>
   <td mat-cell *matCellDef="let element"> {{element.factura_id}} </td>

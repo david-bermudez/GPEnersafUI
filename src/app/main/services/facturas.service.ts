@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { DetalleFactura } from '../interfaces/factura.interfaces';
+import { DetalleFactura, Factura } from '../interfaces/factura.interfaces';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -17,7 +17,7 @@ export class FacturasService {
   RecargarDetalle$ = new EventEmitter<boolean>();
 
   private baseUrl:string = environment.apiUrl;
-
+  public facturas: any[] = []
   getInvoice(Periodo:any){
     console.log(Periodo);
     let body = {Periodo}
@@ -76,13 +76,24 @@ export class FacturasService {
     return this.http.post<any>(`${this.baseUrl}/GetErrorInvoice`,body,{headers})
   }
 
-  GenerateInvoiceAcconting(Periodo:any, Interfase:string){
-    // let {fechafacturacion,version,factura_id} = factura
+  GenerateInvoiceAcconting(factura:any, groupName:string){
+    factura.forEach( (elemt:any) => {
+        this.facturas.push(
+          {
+            "Fechafacturacion" : elemt.fechafacturacion,
+            "Version"    : elemt.version,
+            "Factura_id" : elemt.factura_id,
+          }
+
+          )
+    })
+    let {fechafacturacion,version,factura_id} = factura
     // fechafacturacion = this.formatDate(fechafacturacion)
     let body = {
-                  Periodo,
-                  Interfase
+                  "invoices" : this.facturas,
+                  groupName
                }
+    console.log(body)
     let headers = new HttpHeaders()
     headers = headers.append(
       'Authorization',
