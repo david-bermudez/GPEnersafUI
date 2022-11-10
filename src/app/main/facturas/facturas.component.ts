@@ -237,6 +237,7 @@ export class FacturasComponent implements OnInit {
           title : resp.mensaje,
           icon : 'warning',
         })
+        this.seleccionado = []
       },error => {
 
         this._facturas.logout()
