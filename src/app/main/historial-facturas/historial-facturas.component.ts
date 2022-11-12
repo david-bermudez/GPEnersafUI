@@ -163,33 +163,35 @@ export class HistorialFacturasComponent  {
 
   SaveLoadedInvoices(detalle:any){
 
-    this._facturas.SaveLoadedInvoices(this.seleccion)
-    .subscribe(
+    console.log(this.seleccion)
 
-      resp=> {
+    // this._facturas.SaveLoadedInvoices(this.seleccion)
+    // .subscribe(
 
-        let icono = ''
+    //   resp=> {
 
-        if(resp.code === '200'){
+    //     let icono = ''
 
-          icono = 'success'
-        }else{
-          icono = 'error'
-        }
+    //     if(resp.code === '200'){
 
-        swal.fire({
-          title: 'Proceso Terminado',
-          text : resp.mensaje,
-          icon : 'info'
-        })
-        this.seleccion = []
-        this._facturas.RecargarDetalle$.emit(true)
+    //       icono = 'success'
+    //     }else{
+    //       icono = 'error'
+    //     }
 
-      }
-      ,error => {
+    //     swal.fire({
+    //       title: 'Proceso Terminado',
+    //       text : resp.mensaje,
+    //       icon : 'info'
+    //     })
+    //     this.seleccion = []
+    //     this._facturas.RecargarDetalle$.emit(true)
 
-        ////this._facturas.logout()
-      })
+    //   }
+    //   ,error => {
+
+    //     ////this._facturas.logout()
+    //   })
   }
   GeneratePayableAcconting(){
 

@@ -23,7 +23,8 @@ export class DetalleFacturaComponent implements OnInit {
   @Input() detallFacturas:any
   @Input() payments:any
   @Output() request = new EventEmitter()
-  seleccionado: string[] = [];
+  seleccionado: any[] = [];
+  detail: any[] = [];
   todos : boolean = false
   constructor(private _facturas:FacturasService) {
 
@@ -46,7 +47,7 @@ export class DetalleFacturaComponent implements OnInit {
   GeneratePayableAcconting(elemt:any){
 
     let {factura_id,fechaFacturacion,version} = elemt
-    let { code, group_id} = this.payments
+    let { code, group_id,paymentValue} = this.payments
 
       // if(this.seleccionado === undefined){
 
@@ -57,17 +58,27 @@ export class DetalleFacturaComponent implements OnInit {
       //   return
       // }
 
-    let req = {
-      "invoices" :[
+      this.seleccionado.forEach( (elemt) =>
         {
-          factura_id,
-          fechaFacturacion,
-          version,
-          detail : this.seleccionado
+
+          this.detail.push(
+            elemt.detail
+          )
         }
-      ],
+      )
+
+    let req = {
+      detail: this.detail,
+      // "invoices" :[
+      //   {
+      //     factura_id,
+      //     fechaFacturacion,
+      //     version,
+      //   }
+      // ],
       "payments" : [ {
-        code
+        code,
+        paymentValue
 
       }
 
@@ -127,6 +138,7 @@ onChange(ob:any,item:any,element:any) {
     this.seleccionado = aux
 
   }
+  console.log(element)
   this.GeneratePayableAcconting(element)
   console.log(this.seleccionado)
 }
@@ -172,6 +184,8 @@ SaveLoadedInvoices(elemt:any){
 }
 seleccionarTodos(check:any,element:any){
   if(check.checked){
+
+
     this.seleccionado = []
     this.seleccionado = this.detallFacturas
     this.todos = true

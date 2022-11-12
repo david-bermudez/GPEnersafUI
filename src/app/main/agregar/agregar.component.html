@@ -1,0 +1,123 @@
+<div class="container">
+
+
+  <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="crear()">
+
+    <div class="row">
+      <div class="col-4">
+        <label for="inputEmail4" class="form-label">Codigo</label>
+        <input formControlName = 'codigo' type="text" class="form-control" id="inputEmail4">
+      </div>
+      <div class="col-4">
+        <label for="inputPassword4" class="form-label">Nombre</label>
+        <input formControlName = 'nombre' type="text" class="form-control" id="inputPassword4">
+      </div>
+      <div class="col-4">
+        <label for="inputAddress" class="form-label">Tipo</label>
+        <input formControlName = 'tipo' type="text" class="form-control" id="inputAddress" >
+      </div>
+      <div class="col-4">
+        <label for="inputAddress2" class="form-label">Tipo Asiento</label>
+        <input formControlName = 'tipo_asiento' type="text" class="form-control" id="inputAddress2">
+      </div>
+      <div class="col-4">
+        <label for="inputCity" class="form-label">Concepto</label>
+        <input formControlName = 'concepto' type="text" class="form-control" id="inputCity">
+      </div>
+
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codctaco</label>
+        <input formControlName = 'codctaco' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codsucur</label>
+        <input formControlName = 'codsucur' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codtipfu</label>
+        <input formControlName = 'codtipfu' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">numtipfu</label>
+        <input formControlName = 'numtipfu' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codtipdc</label>
+        <input formControlName = 'codtipdc' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">numdocso</label>
+        <input formControlName = 'numdocso' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codlibro</label>
+        <input formControlName = 'codlibro' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">esquemat</label>
+        <input formControlName = 'esquemat' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">nivanal1</label>
+        <input formControlName = 'nivanal1' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codniva1</label>
+        <input formControlName = 'codniva1' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">formula</label>
+        <input formControlName = 'formula' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">tipo moneda</label>
+        <input formControlName = 'tipo_moneda' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">nivanal2</label>
+        <input formControlName = 'nivanal2' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codniva2</label>
+        <input formControlName = 'codniva2' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codcompr</label>
+        <input formControlName = 'codcompr' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codopepr</label>
+        <input formControlName = 'codopepr' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">nivanal3</label>
+        <input formControlName = 'nivanal3' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">codniva3</label>
+        <input formControlName = 'codniva3' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">sort order</label>
+        <input formControlName = 'sort_order' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">contrato</label>
+        <input formControlName = 'contrato' type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-4">
+        <label for="inputZip" class="form-label">activo</label>
+        <input formControlName = 'activo' type="text" class="form-control" id="inputZip">
+      </div>
+      <br>
+      <hr>
+      <div class="col-6 float-end" >
+        <button [disabled]="miFormulario.invalid" class="btn btn-primary">Guardar</button>
+      </div>
+      <div class="col-6 float-end">
+        <button  class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+      </div>
+      </div>
+
+  </form>
+</div>

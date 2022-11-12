@@ -1,40 +1,49 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th *ngFor="let item of cabeceraTabla ">{{item}}</th>
+<div class="container">
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let body of bodyTabla">
-      <td> <input [(ngModel)]="body.codigo" ></td>
-      <td> <input [(ngModel)]="body.nombre"></td>
-      <td> <input [(ngModel)]="body.tipo"></td>
-      <td> <input [(ngModel)]="body.tipo_asiento"></td>
-      <td> <input [(ngModel)]="body.concepto"></td>
-      <td> <input [(ngModel)]="body.codctaco"></td>
-      <td> <input [(ngModel)]="body.codsucur"></td>
-      <td> <input [(ngModel)]="body.codtipfu"></td>
-      <td> <input [(ngModel)]="body.numtipfu"></td>
-      <td> <input [(ngModel)]="body.codtipdc"></td>
-      <td> <input [(ngModel)]="body.numdocso"></td>
-      <td> <input [(ngModel)]="body.codlibro"></td>
-      <td> <input [(ngModel)]="body.esquemat"></td>
-      <td> <input [(ngModel)]="body.nivanal1"></td>
-      <td> <input [(ngModel)]="body.codniva1"></td>
-      <td> <input [(ngModel)]="body.formula"></td>
-      <td> <input [(ngModel)]="body.tipo_moneda"></td>
-      <td> <input [(ngModel)]="body.nivanal2"></td>
-      <td> <input [(ngModel)]="body.codniva2"></td>
-      <td> <input [(ngModel)]="body.codcompr"></td>
-      <td> <input [(ngModel)]="body.codopepr"></td>
-      <td> <input [(ngModel)]="body.nivanal3"></td>
-      <td> <input [(ngModel)]="body.codniva3"></td>
-      <td> <input [(ngModel)]="body.sort_order"></td>
-      <td> <input [(ngModel)]="body.contrato"></td>
-      <td> <input [(ngModel)]="body.activo"></td>
-      <td> <button class="btn btn-sm-primary">Modificar</button></td>
+  <div>
+    <button class="btn btn-sm btn-success" (click)="nuevo()">Nuevo</button>
+    <button class="btn btn-sm btn-danger" (click)="cerrar()">Cerrar</button>
+  </div>
 
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th *ngFor="let item of cabeceraTabla ">{{item}}</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let body of bodyTabla">
+        <td> <input [(ngModel)]="body.codigo" ></td>
+        <td> <input [(ngModel)]="body.nombre"></td>
+        <td> <input [(ngModel)]="body.tipo"></td>
+        <td> <input [(ngModel)]="body.tipo_asiento"></td>
+        <td> <input [(ngModel)]="body.concepto"></td>
+        <td> <input [(ngModel)]="body.codctaco"></td>
+        <td> <input [(ngModel)]="body.codsucur"></td>
+        <td> <input [(ngModel)]="body.codtipfu"></td>
+        <td> <input [(ngModel)]="body.numtipfu"></td>
+        <td> <input [(ngModel)]="body.codtipdc"></td>
+        <td> <input [(ngModel)]="body.numdocso"></td>
+        <td> <input [(ngModel)]="body.codlibro"></td>
+        <td> <input [(ngModel)]="body.esquemat"></td>
+        <td> <input [(ngModel)]="body.nivanal1"></td>
+        <td> <input [(ngModel)]="body.codniva1"></td>
+        <td> <input [(ngModel)]="body.formula"></td>
+        <td> <input [(ngModel)]="body.tipo_moneda"></td>
+        <td> <input [(ngModel)]="body.nivanal2"></td>
+        <td> <input [(ngModel)]="body.codniva2"></td>
+        <td> <input [(ngModel)]="body.codcompr"></td>
+        <td> <input [(ngModel)]="body.codopepr"></td>
+        <td> <input [(ngModel)]="body.nivanal3"></td>
+        <td> <input [(ngModel)]="body.codniva3"></td>
+        <td> <input [(ngModel)]="body.sort_order"></td>
+        <td> <input [(ngModel)]="body.contrato"></td>
+        <td> <input [(ngModel)]="body.activo"></td>
+        <td> <button class="btn btn-sm btn-primary" (click)="modificar(body)">Modificar</button></td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</div>

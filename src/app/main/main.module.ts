@@ -8,8 +8,9 @@ import { MaterialModule } from '../material/material/material.module';
 import { DetalleErrorComponent } from './detalle-error/detalle-error.component';
 import { HistorialFacturasComponent } from './historial-facturas/historial-facturas.component';
 import { MainComponent } from './main/main.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalleFacturaComponent } from './detalle-factura/detalle-factura.component';
+import { AgregarComponent } from './agregar/agregar.component';
 
 
 @NgModule({
@@ -17,11 +18,13 @@ import { DetalleFacturaComponent } from './detalle-factura/detalle-factura.compo
     FacturasComponent,
     HistorialFacturasComponent,
     MainComponent,
-    DetalleFacturaComponent
+    DetalleFacturaComponent,
+    AgregarComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MainRoutingModule,
     SharedModule,
     MaterialModule
