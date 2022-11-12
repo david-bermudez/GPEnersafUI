@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from '../../loader/loader.service';
+import { FacturasService } from '../services/facturas.service';
 
 
 @Component({
@@ -9,10 +10,13 @@ import { LoaderService } from '../../loader/loader.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(public loader:LoaderService) {
+  constructor(public loader:LoaderService, private factura:FacturasService) {
+
+
   }
 
   periodo!:string
+  invoices!:string
 
   ngOnInit(): void {
   }
@@ -20,4 +24,6 @@ export class MainComponent implements OnInit {
   periodChange(event:any){
     console.log(this.periodo)
   }
+
+
 }

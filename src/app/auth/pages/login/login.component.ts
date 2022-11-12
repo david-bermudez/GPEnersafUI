@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import  swal from 'sweetalert2'
 import { LoginService } from '../../services/login.service';
 import { LoaderService } from '../../../loader/loader.service';
+import { FacturasService } from '../../../main/services/facturas.service';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,14 @@ export class LoginComponent implements OnInit {
     password:['', [Validators.required]],
 
   })
+  version: string = '';
 
   constructor( private fb: FormBuilder, private router:Router, private authService:LoginService
-    , public loader : LoaderService) { }
+    , public loader : LoaderService, public factura: FacturasService) {
+
+
+      this.obtenerVersion()
+    }
 
   ngOnInit(): void {
   }
@@ -53,6 +59,12 @@ export class LoginComponent implements OnInit {
       )
 
 
+  }
+
+  obtenerVersion(){
+    this.factura.getVersion().subscribe( resp  =>{
+      this.version = resp
+    } )
   }
 
 }

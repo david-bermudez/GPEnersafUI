@@ -52,6 +52,7 @@ export class FacturasComponent implements OnInit {
   }
 
   isModify : boolean = false
+  todos : boolean = false
 
   ngOnInit(): void {
 
@@ -141,7 +142,7 @@ export class FacturasComponent implements OnInit {
         // console.log(info)
     },error => {
 
-      this._facturas.logout()
+      //this._facturas.logout()
     })
     }
   }
@@ -159,7 +160,7 @@ export class FacturasComponent implements OnInit {
       })
     },error => {
 
-      this._facturas.logout()
+      //this._facturas.logout()
     })
 
   }
@@ -173,7 +174,7 @@ export class FacturasComponent implements OnInit {
       })
     },error => {
 
-      this._facturas.logout()
+      //this._facturas.logout()
     })
 
   }
@@ -240,7 +241,7 @@ export class FacturasComponent implements OnInit {
         this.seleccionado = []
       },error => {
 
-        this._facturas.logout()
+        //this._facturas.logout()
       })
   }
 
@@ -273,6 +274,22 @@ export class FacturasComponent implements OnInit {
 
     console.log(this.seleccionado)
   }
+
+  seleccionarTodos(check:any){
+    if(check.checked){
+      this.seleccionado = []
+      this.seleccionado = this.facturacion
+      this.todos = true
+    }else{
+      this.seleccionado = []
+      this.todos = false
+    }
+
+    console.log(this.seleccionado)
+  }
+
+
+
 }
 
 

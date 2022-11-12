@@ -1,5 +1,5 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatRadioChange } from '@angular/material/radio';
 import swal from 'sweetalert2';
@@ -22,11 +22,13 @@ export class DetalleFacturaComponent implements OnInit {
 
   @Input() detallFacturas:any
   @Input() payments:any
+  @Output() request = new EventEmitter()
   seleccionado: string[] = [];
+  todos : boolean = false
   constructor(private _facturas:FacturasService) {
 
   }
-  displayedColumnsFacturas: string[] = ['detalle','actions'];
+  displayedColumnsFacturas: string[] = ['detalle'];
   displayedColumnsFacturasdetalle: string[] = ['select','description','value','suggestedValue'];
   columnsToDisplayWithExpand = [...this.displayedColumnsFacturas, 'expand'];
   expandedElement:  null | undefined;
@@ -74,42 +76,43 @@ export class DetalleFacturaComponent implements OnInit {
 
     }
   console.log(req)
+  this.request.emit(req)
 
 
 
-  this._facturas.GeneratePayableAcconting(req)
-  .subscribe(
+  // this._facturas.GeneratePayableAcconting(req)
+  // .subscribe(
 
-    resp=> {
+  //   resp=> {
 
-      let icono = ''
+  //     let icono = ''
 
-      if(resp.code === '200'){
+  //     if(resp.code === '200'){
 
-        icono = 'success'
-      }else{
-        icono = 'error'
-      }
+  //       icono = 'success'
+  //     }else{
+  //       icono = 'error'
+  //     }
 
-      swal.fire({
-        title: 'Proceso Terminado',
-        text : resp.mensaje,
-        icon : 'info'
-      })
-      this.seleccionado = []
-      this._facturas.RecargarDetalle$.emit(true)
+  //     swal.fire({
+  //       title: 'Proceso Terminado',
+  //       text : resp.mensaje,
+  //       icon : 'info'
+  //     })
+  //     this.seleccionado = []
+  //     this._facturas.RecargarDetalle$.emit(true)
 
-    }
-    ,error => {
+  //   }
+  //   ,error => {
 
-      this._facturas.logout()
-    })
+  //     this._facturas.logout()
+  //   })
 
 
 
 }
 
-onChange(ob:any,item:any) {
+onChange(ob:any,item:any,element:any) {
   if(ob.checked){
 
     this.seleccionado.push(item)
@@ -117,12 +120,14 @@ onChange(ob:any,item:any) {
 
     const aux = this.seleccionado.filter(value => value !== item )
 
+
     // console.log(aux)
 
 
     this.seleccionado = aux
-  }
 
+  }
+  this.GeneratePayableAcconting(element)
   console.log(this.seleccionado)
 }
 SaveLoadedInvoices(elemt:any){
@@ -162,9 +167,20 @@ SaveLoadedInvoices(elemt:any){
     }
     ,error => {
 
-      this._facturas.logout()
+      //this._facturas.logout()
     })
 }
-
+seleccionarTodos(check:any,element:any){
+  if(check.checked){
+    this.seleccionado = []
+    this.seleccionado = this.detallFacturas
+    this.todos = true
+  }else{
+    this.seleccionado = []
+    this.todos = false
+  }
+  this.GeneratePayableAcconting(element)
+  console.log(this.seleccionado)
+}
 
 }

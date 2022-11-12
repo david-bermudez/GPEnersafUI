@@ -3,8 +3,8 @@
 
   <!-- todo colocar GetPendingInvoice -->
   <button type="button" class="mr-1" mat-raised-button color="primary" (click)="obtenerFacturas()">Obtener Facturas</button>
-  <button type="button" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('CP')">Proyectar</button>
-  <button type="button" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('CN')">Contabilizar</button>
+  <button type="button" *ngIf="isModify" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('CP')">Proyectar</button>
+  <button type="button" *ngIf="isModify" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('CN')">Contabilizar</button>
 </div>
 
 <table *ngIf="facturacion.length > 0" mat-table [dataSource]="facturacion" class="mat-elevation-z8" multiTemplateDataRows>
@@ -13,11 +13,11 @@
 
 <ng-container matColumnDef="select">
   <th mat-header-cell *matHeaderCellDef>
-    <mat-checkbox  hidden>
+    <mat-checkbox  (change)="seleccionarTodos($event)">
     </mat-checkbox>
   </th>
   <td mat-cell *matCellDef="let row; let i = index;">
-    <mat-checkbox  (change)="onChange($event,row)"
+    <mat-checkbox [checked]="todos" (change)="onChange($event,row)"
     >
     </mat-checkbox>
   </td>

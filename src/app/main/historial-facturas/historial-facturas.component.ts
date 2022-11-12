@@ -40,6 +40,7 @@ export class HistorialFacturasComponent  {
 
   @Input() perido : any ;
   @Input() payments :string = '' ;
+  @Input() invoices :string = '' ;
 
   public facturacion:any[] = []
   public detalleEmpresa!:DetalleFactura
@@ -47,6 +48,7 @@ export class HistorialFacturasComponent  {
   public detallFacturas:any[] = []
   detailinvioces: any;
   selected = -1
+  seleccion:any
 
   valor!: number
   sumatoria: any = 0;
@@ -113,7 +115,12 @@ export class HistorialFacturasComponent  {
         this.detallFacturas = resp.invoices
     },error => {
 
-      this._facturas.logout()
+      // //this._facturas.logout()
+      console.log(error)
+      swal.fire({
+        icon: 'error',
+        text : error.error
+      })
     })
 
     // this._facturas.GetLoadedInvoicesDummie()
@@ -152,6 +159,46 @@ export class HistorialFacturasComponent  {
   checkUnCheck(index:number){
 
     this.selected = index
+  }
+
+  SaveLoadedInvoices(detalle:any){
+
+    let {factura_id,fechaFacturacion,version,detail} = this.seleccion
+
+    console.log(this.seleccion)
+    this.seleccion = []
+    console.log(this.seleccion)
+  }
+  GeneratePayableAcconting(){
+
+
+    this._facturas.GeneratePayableAcconting(this.seleccion)
+  .subscribe(
+
+    resp=> {
+
+      let icono = ''
+
+      if(resp.code === '200'){
+
+        icono = 'success'
+      }else{
+        icono = 'error'
+      }
+
+      swal.fire({
+        title: 'Proceso Terminado',
+        text : resp.mensaje,
+        icon : 'info'
+      })
+      this.seleccion = []
+      this._facturas.RecargarDetalle$.emit(true)
+
+    }
+    ,error => {
+
+      ////this._facturas.logout()
+    })
   }
 
 

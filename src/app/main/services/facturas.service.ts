@@ -188,6 +188,11 @@ export class FacturasService {
   }
 
 
+  getVersion(){
+    return this.http.post<any>(`${this.baseUrl}/Getversion`,'',)
+  }
+
+
   logout(){
       this.router.navigateByUrl('./login')
       localStorage.clear()
