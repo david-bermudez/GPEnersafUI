@@ -163,11 +163,33 @@ export class HistorialFacturasComponent  {
 
   SaveLoadedInvoices(detalle:any){
 
-    let {factura_id,fechaFacturacion,version,detail} = this.seleccion
+    this._facturas.SaveLoadedInvoices(this.seleccion)
+    .subscribe(
 
-    console.log(this.seleccion)
-    this.seleccion = []
-    console.log(this.seleccion)
+      resp=> {
+
+        let icono = ''
+
+        if(resp.code === '200'){
+
+          icono = 'success'
+        }else{
+          icono = 'error'
+        }
+
+        swal.fire({
+          title: 'Proceso Terminado',
+          text : resp.mensaje,
+          icon : 'info'
+        })
+        this.seleccion = []
+        this._facturas.RecargarDetalle$.emit(true)
+
+      }
+      ,error => {
+
+        ////this._facturas.logout()
+      })
   }
   GeneratePayableAcconting(){
 

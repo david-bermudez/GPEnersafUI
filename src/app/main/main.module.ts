@@ -15,7 +15,6 @@ import { DetalleFacturaComponent } from './detalle-factura/detalle-factura.compo
 @NgModule({
   declarations: [
     FacturasComponent,
-    DetalleErrorComponent,
     HistorialFacturasComponent,
     MainComponent,
     DetalleFacturaComponent
