@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HeaderService } from '../../shared/services/header.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar',
@@ -45,9 +46,22 @@ export class AgregarComponent implements OnInit {
   public dialogRef: MatDialogRef<AgregarComponent> ,private fb: FormBuilder, private configuratiosServices:HeaderService) { }
 
   ngOnInit(): void {
+
+
   }
   crear(){
-    this.configuratiosServices.create(this.miFormulario.value).subscribe( console.log)
+    this.configuratiosServices.create(this.miFormulario.value).subscribe( resp => {
+
+      if( resp === null){
+
+        swal.fire({
+          icon: 'error',
+          text : 'Error al Crear Entidad'
+        })
+      }else{
+        this.dialogRef.close()
+      }
+    })
   }
 
   cerrar(){

@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div>
+  <div *ngIf="isModify">
     <button class="btn btn-sm btn-success" (click)="nuevo()">Nuevo</button>
     <button class="btn btn-sm btn-danger" (click)="cerrar()">Cerrar</button>
   </div>
@@ -40,7 +40,7 @@
         <td> <input [(ngModel)]="body.sort_order"></td>
         <td> <input [(ngModel)]="body.contrato"></td>
         <td> <input [(ngModel)]="body.activo"></td>
-        <td> <button class="btn btn-sm btn-primary" (click)="modificar(body)">Modificar</button></td>
+        <td *ngIf="isModify" > <button class="btn btn-sm btn-primary" (click)="modificar(body)">Modificar</button></td>
 
       </tr>
     </tbody>

@@ -9,7 +9,7 @@ import { AgregarComponent } from '../agregar/agregar.component';
   styleUrls: ['./detalle-error.component.css']
 })
 export class DetalleErrorComponent implements OnInit {
-
+  isModify : boolean = false
   cabeceraTabla = ['codigo',	'nombre'	,'tipo',	'tipo_asiento',	'concepto'	,'codctaco'	,'codsucur',	'codtipfu'	,'numtipfu'	,'codtipdc'	,'numdocso',	'codlibro',	'esquemat'	,'nivanal1'	,'codniva1',	'formula'	,'tipo_moneda',	'nivanal2'	,'codniva2',	'codcompr',	'codopepr',	'nivanal3',	'codniva3',	'sort_order',	'contrato', 'activo']
   bodyTabla:any = []
   constructor(@Inject(MAT_DIALOG_DATA) public data:any ,
@@ -19,6 +19,11 @@ export class DetalleErrorComponent implements OnInit {
   ngOnInit(): void {
 
     this.obtenerListado()
+
+    let perfil = localStorage.getItem('profile')
+    if(perfil === 'MODIFY'){
+      this.isModify = true;
+    }
   }
 
   modificar(elemento:any){
