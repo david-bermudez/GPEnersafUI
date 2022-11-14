@@ -49,42 +49,19 @@ export class DetalleFacturaComponent implements OnInit {
     let {factura_id,fechaFacturacion,version} = elemt
     let { code, group_id,paymentValue} = this.payments
 
-      // if(this.seleccionado === undefined){
-
-      //    swal.fire({
-      //     icon:'info',
-      //     text: 'Debe Selecccionar la factura a procesar'
-      //   })
-      //   return
-      // }
-
-      this.seleccionado.forEach( (elemt) =>
-        {
-
-          this.detail.push(
-            elemt.detail
-          )
-        }
-      )
+    this.seleccionado.forEach( (elemts) =>
+      {
+        console.log(elemts)
+        elemts.detail.forEach ( (invoiceItem: any ) => {
+          this.detail.push( invoiceItem )
+        })
+      }
+    )
 
     let req = {
-      detail: this.detail,
-      // "invoices" :[
-      //   {
-      //     factura_id,
-      //     fechaFacturacion,
-      //     version,
-      //   }
-      // ],
-      "payments" : [ {
-        code,
-        paymentValue
-
-      }
-
-    ],
-    "GroupName" : group_id
-
+      "detail": this.detail,
+      "payments" : [ {code,paymentValue}],
+      "GroupName" : group_id
     }
   console.log(req)
   this.request.emit(req)
