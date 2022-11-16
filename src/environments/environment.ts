@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl : 'http://172.16.1.100:9092/GpEnersafAPI/api/EnerSaf',
-  login: 'http://172.16.1.100:9092/GpEnersafAPI/auth/Login'
+  login: 'http://172.16.1.100:9092/GpEnersafAPI/auth/Login',
+
 };
 
 /*

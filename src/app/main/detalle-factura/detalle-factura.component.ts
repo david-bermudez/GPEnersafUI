@@ -42,26 +42,51 @@ export class DetalleFacturaComponent implements OnInit {
       this.isModify = true;
     }
 
+
   }
+
 
   GeneratePayableAcconting(elemt:any){
 
     let {factura_id,fechaFacturacion,version} = elemt
     let { code, group_id,paymentValue} = this.payments
 
-    this.seleccionado.forEach( (elemts) =>
-      {
-        console.log(elemts)
-        elemts.detail.forEach ( (invoiceItem: any ) => {
-          this.detail.push( invoiceItem )
-        })
-      }
-    )
+      // if(this.seleccionado === undefined){
+
+      //    swal.fire({
+      //     icon:'info',
+      //     text: 'Debe Selecccionar la factura a procesar'
+      //   })
+      //   return
+      // }
+
+      // this.seleccionado.forEach( (elemt) =>
+      //   {
+
+      //     this.detail.push(
+      //       elemt.detail
+      //     )
+      //   }
+      // )
 
     let req = {
-      "detail": this.detail,
-      "payments" : [ {code,paymentValue}],
-      "GroupName" : group_id
+      detail: this.seleccionado,
+      // "invoices" :[
+      //   {
+      //     factura_id,
+      //     fechaFacturacion,
+      //     version,
+      //   }
+      // ],
+      "payments" : [ {
+        code,
+        paymentValue
+
+      }
+
+    ],
+    "GroupName" : group_id
+
     }
   console.log(req)
   this.request.emit(req)
@@ -101,24 +126,75 @@ export class DetalleFacturaComponent implements OnInit {
 }
 
 onChange(ob:any,item:any,element:any) {
-  if(ob.checked){
 
+    debugger
+
+
+  if(ob.checked){
+    console.log(item)
+    console.log(element)
     this.seleccionado.push(item)
   }else{
 
+    console.log(this.seleccionado)
+
+    element.detail.forEach((factura:any) => {
+      if(factura=== item){
+        factura.seleccionado = false
+      }
+    })
     const aux = this.seleccionado.filter(value => value !== item )
-
-
-    // console.log(aux)
-
-
     this.seleccionado = aux
 
   }
-  console.log(element)
+  // console.log(element)
   this.GeneratePayableAcconting(element)
   console.log(this.seleccionado)
 }
+
+seleccionarTodos(check:any,element:any,elementDetail:any){
+
+  if(check.checked){
+
+
+
+  elementDetail.forEach((facturaId:any,i:any) => {
+    if(facturaId.factura_id === element.factura_id){
+          facturaId.seleccionado = true
+          this.seleccionado.push(
+            facturaId
+          )
+
+    }
+  });
+  this.todos = true
+
+  console.log(this.seleccionado)
+
+}else{
+  debugger
+  this.todos = false
+
+  // this.seleccionado = []
+  // const aux = this.seleccionado.filter(value => value === elementDetail )
+
+  elementDetail.forEach((element:any) => {
+    this.seleccionado = this.eliminarSeleccion(element)
+
+  });
+
+  // this.seleccionado = aux
+  elementDetail.forEach((facturaId:any,i:any) => {
+    if(facturaId.factura_id === element.factura_id){
+          facturaId.seleccionado = false
+    }
+  });
+}
+this.GeneratePayableAcconting(element)
+console.log(this.seleccionado)
+}
+
+
 SaveLoadedInvoices(elemt:any){
 
 
@@ -158,20 +234,18 @@ SaveLoadedInvoices(elemt:any){
 
       //this._facturas.logout()
     })
-}
-seleccionarTodos(check:any,element:any){
-  if(check.checked){
-
-
-    this.seleccionado = []
-    this.seleccionado = this.detallFacturas
-    this.todos = true
-  }else{
-    this.seleccionado = []
-    this.todos = false
   }
-  this.GeneratePayableAcconting(element)
-  console.log(this.seleccionado)
-}
+
+
+  eliminarSeleccion(seleccion:any){
+
+    const aux1 = this.seleccionado
+
+    const aux = aux1.filter(value => value !== seleccion )
+
+    return aux
+
+  }
+
 
 }

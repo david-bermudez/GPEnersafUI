@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl : 'http://172.16.1.100:9091/GpEnersafAPI/api/EnerSaf',
-  login: 'http://172.16.1.100:9091/GpEnersafAPI/auth/Login'
+  apiUrl : 'https://sicsaf.gecelca.com.co/GpEnersafAPI/api/EnerSaf',
+  login: 'https://sicsaf.gecelca.com.co/GpEnersafAPI/auth/Login'
 };

@@ -24,18 +24,17 @@
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
         <div class="example-element-detail"
-             [@detailExpand]="element !== expandedElement ? 'expanded' : 'collapsed'"
              [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
 
              <table  mat-table  [dataSource]="element.detail" >
 
               <ng-container matColumnDef="select">
                 <th mat-header-cell *matHeaderCellDef>
-                  <mat-checkbox [checked]="todos" (change)="seleccionarTodos($event,element)">
+                  <mat-checkbox  (change)="seleccionarTodos($event,element,element.detail)">
                   </mat-checkbox>
                 </th>
                 <td mat-cell *matCellDef="let row; let i = index;">
-                  <mat-checkbox [checked]="todos" (change)="onChange($event,row,element)"
+                  <mat-checkbox [checked]="row.seleccionado" (change)="onChange($event,row,element)"
                   >
                   </mat-checkbox>
                 </td>

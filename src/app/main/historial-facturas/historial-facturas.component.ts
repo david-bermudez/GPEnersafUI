@@ -196,6 +196,8 @@ export class HistorialFacturasComponent  {
   GeneratePayableAcconting(){
 
 
+      console.log(this.seleccion)
+
     this._facturas.GeneratePayableAcconting(this.seleccion)
   .subscribe(
 
