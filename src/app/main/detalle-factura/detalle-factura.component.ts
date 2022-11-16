@@ -42,6 +42,13 @@ export class DetalleFacturaComponent implements OnInit {
       this.isModify = true;
     }
 
+    this._facturas.RecargarDetalle$.subscribe(
+      resp => {
+
+        this.seleccionado = []
+      }
+    )
+
 
   }
 
