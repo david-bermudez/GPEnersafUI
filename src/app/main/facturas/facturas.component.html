@@ -5,6 +5,7 @@
   <button type="button" class="mr-1" mat-raised-button color="primary" (click)="obtenerFacturas()">Obtener Facturas</button>
   <button type="button" *ngIf="isModify" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('CP')">Proyectar</button>
   <button type="button" *ngIf="isModify" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('CN')">Contabilizar</button>
+  <button type="button" *ngIf="isModify" class="mr-1  float-end" mat-raised-button color="primary" (click)="GenerateInvoiceAcconting('PP')">Presupuestar</button>
 </div>
 
 <table *ngIf="facturacion.length > 0" mat-table [dataSource]="facturacion" class="mat-elevation-z8" multiTemplateDataRows>
