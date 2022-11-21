@@ -7,11 +7,8 @@ import { environment } from '../../../environments/environment';
 })
 export class HeaderService {
 
-
   baseUrl = environment.apiUrl
-
   constructor(private http:HttpClient) { }
-
 
   GetInfo(){
 
@@ -35,11 +32,11 @@ export class HeaderService {
   }
   create(factura:any){
 
-    let{codigo,	nombre	,tipo,	tipo_asiento,	concepto	,codctaco	,codsucur,	codtipfu	,numtipfu	,codtipdc	,numdocso,	codlibro,	esquemat	,nivanal1	,codniva1,	formula	,tipo_moneda,	nivanal2	,codniva2,	codcompr,	codopepr,	nivanal3,	codniva3,	sort_order,	contrato, activo} = factura
+    let{codigo,	nombre	,tipo,	tipo_asiento,	concepto	,codctaco	,codsucur,	codtipfu	,numtipfu	,codtipdc	,numdocso,	codlibro,	esquemat	,nivanal1	,codniva1,	formula	,tipo_moneda,	nivanal2	,codniva2,	codcompr,	codopepr,	nivanal3,	codniva3,	sort_order,	frontera, activo} = factura
 
 
     let body = {
-      codigo,	nombre	,tipo,	tipo_asiento,	concepto	,codctaco	,codsucur,	codtipfu	,numtipfu	,codtipdc	,numdocso,	codlibro,	esquemat	,nivanal1	,codniva1,	formula	,tipo_moneda,	nivanal2	,codniva2,	codcompr,	codopepr,	nivanal3,	codniva3,	sort_order,	contrato, activo
+      codigo,	nombre	,tipo,	tipo_asiento,	concepto	,codctaco	,codsucur,	codtipfu	,numtipfu	,codtipdc	,numdocso,	codlibro,	esquemat	,nivanal1	,codniva1,	formula	,tipo_moneda,	nivanal2	,codniva2,	codcompr,	codopepr,	nivanal3,	codniva3,	sort_order,	frontera, activo
     }
     let headers = new HttpHeaders()
     headers = headers.append(

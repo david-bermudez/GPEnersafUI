@@ -10,7 +10,7 @@ import { AgregarComponent } from '../agregar/agregar.component';
 })
 export class DetalleErrorComponent implements OnInit {
   isModify : boolean = false
-  cabeceraTabla = ['codigo',	'nombre'	,'tipo',	'tipo_asiento',	'concepto'	,'codctaco'	,'codsucur',	'codtipfu'	,'numtipfu'	,'codtipdc'	,'numdocso',	'codlibro',	'esquemat'	,'nivanal1'	,'codniva1',	'formula'	,'tipo_moneda',	'nivanal2'	,'codniva2',	'codcompr',	'codopepr',	'nivanal3',	'codniva3',	'sort_order',	'contrato', 'activo']
+  cabeceraTabla = ['codigo',	'nombre'	,'tipo',	'tipo_asiento',	'concepto'	,'codctaco'	,'codsucur',	'codtipfu'	,'numtipfu'	,'codtipdc'	,'numdocso',	'codlibro',	'esquemat'	,'nivanal1'	,'codniva1',	'formula'	,'tipo_moneda',	'nivanal2'	,'codniva2',	'codcompr',	'codopepr',	'nivanal3',	'codniva3',	'sort_order',	'frontera', 'activo']
   bodyTabla:any = []
   constructor(@Inject(MAT_DIALOG_DATA) public data:any ,
    public configuracionService:HeaderService , public dialogo:MatDialog,

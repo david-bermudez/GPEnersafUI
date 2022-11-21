@@ -37,7 +37,7 @@ export class AgregarComponent implements OnInit {
     nivanal3:['', [Validators.required]],
     codniva3:['', [Validators.required]],
     sort_order:['', [Validators.required]],
-    contrato:['', [Validators.required]],
+    frontera:['', [Validators.required]],
     activo:['', [Validators.required]]
 
   })
