@@ -23,6 +23,7 @@ export class DetalleFacturaComponent implements OnInit {
   @Input() detallFacturas:any
   @Input() payments:any
   @Output() request = new EventEmitter()
+  @Output() Sumatoria = new EventEmitter()
   seleccionado: any[] = [];
   detail: any[] = [];
   todos : boolean = false
@@ -159,6 +160,11 @@ onChange(ob:any,item:any,element:any) {
   console.log(this.seleccionado)
 }
 
+
+cambio(event:any){
+  console.log(event)
+}
+
 seleccionarTodos(check:any,element:any,elementDetail:any){
 
   if(check.checked){
@@ -168,6 +174,7 @@ seleccionarTodos(check:any,element:any,elementDetail:any){
   elementDetail.forEach((facturaId:any,i:any) => {
     if(facturaId.factura_id === element.factura_id){
           facturaId.seleccionado = true
+
           this.seleccionado.push(
             facturaId
           )

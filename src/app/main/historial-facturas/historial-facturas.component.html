@@ -34,11 +34,11 @@
             <div class="p-2 flex-fill bd-highlight">Total Facturas : {{detalleEmpresa.totalInvoice |number}}</div>
             <div class="p-2 flex-fill bd-highlight">Total Pagos : {{detalleEmpresa.totalPayment | number}} </div>
             <div class="p-2 flex-fill bd-highlight">Diferencia : {{detalleEmpresa.difference | number}} </div>
-            <!-- <div class="p-2 flex-fill bd-highlight">Sumatoria : {{sumatoria | number}} </div> -->
+            <div class="p-2 flex-fill bd-highlight">Sumatoria : {{sumatoria | number}} </div>
 
 
                 <button  mat-raised-button class="guardar" (click)="SaveLoadedInvoices(element)">Guardar</button>
-                <button  mat-raised-button class="confirmar" (click)="GeneratePayableAcconting()">Confirmar</button>
+                <button  mat-raised-button class="confirmar" (click)="GeneratePayableAcconting()">Aplicar</button>
 
           </div>
 
@@ -83,7 +83,7 @@
            </table>
            <br>
 
-          <app-detalle-factura [detallFacturas]="detallFacturas" [payments]="payments" (request)="seleccion = $event " ></app-detalle-factura>
+          <app-detalle-factura [detallFacturas]="detallFacturas" [payments]="payments" (request)="seleccion = $event "  (Sumatoria)="sumatoria = $event"></app-detalle-factura>
 
       </div>
     </td>

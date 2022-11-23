@@ -2,13 +2,15 @@
 <table  mat-table *ngIf="detallFacturas.length > 0" [dataSource]="detallFacturas" class="secundario" multiTemplateDataRows>
 
   <ng-container matColumnDef="detalle">
-    <th mat-header-cell *matHeaderCellDef class="secundario"> Descripcion </th>
+    <th mat-header-cell *matHeaderCellDef  class="secundario">
+        Descripcion </th>
     <td mat-cell *matCellDef="let element; let i = index;" class="secundario">
       <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
         <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
         <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
       </button>
-      {{element.description}}
+      <mat-checkbox  (change)="seleccionarTodos($event,element,element.detail)">
+      </mat-checkbox> {{element.description}}
     </td>
   </ng-container>
 
@@ -30,8 +32,8 @@
 
               <ng-container matColumnDef="select">
                 <th mat-header-cell *matHeaderCellDef>
-                  <mat-checkbox  (change)="seleccionarTodos($event,element,element.detail)">
-                  </mat-checkbox>
+                  <!-- <mat-checkbox  (change)="seleccionarTodos($event,element,element.detail)">
+                  </mat-checkbox> -->
                 </th>
                 <td mat-cell *matCellDef="let row; let i = index;">
                   <mat-checkbox [checked]="row.seleccionado" (change)="onChange($event,row,element)"
