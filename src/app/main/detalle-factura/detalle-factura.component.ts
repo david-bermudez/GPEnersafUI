@@ -24,6 +24,7 @@ export class DetalleFacturaComponent implements OnInit {
   @Input() payments:any
   @Output() request = new EventEmitter()
   @Output() Sumatoria = new EventEmitter()
+  suma : number = 0
   seleccionado: any[] = [];
   detail: any[] = [];
   todos : boolean = false
@@ -59,33 +60,9 @@ export class DetalleFacturaComponent implements OnInit {
     let {factura_id,fechaFacturacion,version} = elemt
     let { code, group_id,paymentValue} = this.payments
 
-      // if(this.seleccionado === undefined){
-
-      //    swal.fire({
-      //     icon:'info',
-      //     text: 'Debe Selecccionar la factura a procesar'
-      //   })
-      //   return
-      // }
-
-      // this.seleccionado.forEach( (elemt) =>
-      //   {
-
-      //     this.detail.push(
-      //       elemt.detail
-      //     )
-      //   }
-      // )
-
     let req = {
       detail: this.seleccionado,
-      // "invoices" :[
-      //   {
-      //     factura_id,
-      //     fechaFacturacion,
-      //     version,
-      //   }
-      // ],
+
       "payments" : [ {
         code,
         paymentValue
@@ -100,37 +77,6 @@ export class DetalleFacturaComponent implements OnInit {
   this.request.emit(req)
 
 
-
-  // this._facturas.GeneratePayableAcconting(req)
-  // .subscribe(
-
-  //   resp=> {
-
-  //     let icono = ''
-
-  //     if(resp.code === '200'){
-
-  //       icono = 'success'
-  //     }else{
-  //       icono = 'error'
-  //     }
-
-  //     swal.fire({
-  //       title: 'Proceso Terminado',
-  //       text : resp.mensaje,
-  //       icon : 'info'
-  //     })
-  //     this.seleccionado = []
-  //     this._facturas.RecargarDetalle$.emit(true)
-
-  //   }
-  //   ,error => {
-
-  //     this._facturas.logout()
-  //   })
-
-
-
 }
 
 onChange(ob:any,item:any,element:any) {
@@ -141,6 +87,7 @@ onChange(ob:any,item:any,element:any) {
   if(ob.checked){
     console.log(item)
     console.log(element)
+    this.suma = this.suma+item.value
     this.seleccionado.push(item)
   }else{
 
@@ -149,6 +96,7 @@ onChange(ob:any,item:any,element:any) {
     element.detail.forEach((factura:any) => {
       if(factura=== item){
         factura.seleccionado = false
+        this.suma = this.suma-factura.value
       }
     })
     const aux = this.seleccionado.filter(value => value !== item )
@@ -156,6 +104,7 @@ onChange(ob:any,item:any,element:any) {
 
   }
   // console.log(element)
+  this.Sumatoria.emit(this.suma)
   this.GeneratePayableAcconting(element)
   console.log(this.seleccionado)
 }
@@ -178,32 +127,54 @@ seleccionarTodos(check:any,element:any,elementDetail:any){
           this.seleccionado.push(
             facturaId
           )
+          debugger
+          this.suma = this.suma+facturaId.value
+
 
     }
   });
   this.todos = true
 
   console.log(this.seleccionado)
+  console.log(this.suma)
+  // this.Sumatoria.emit(this.suma)
 
 }else{
   debugger
   this.todos = false
 
-  // this.seleccionado = []
-  // const aux = this.seleccionado.filter(value => value === elementDetail )
+  elementDetail.forEach((facturaId:any,i:any) => {
+    if(facturaId.factura_id === element.factura_id){
+          facturaId.seleccionado = true
+
+          this.seleccionado.push(
+            facturaId
+          )
+          if(this.suma !== 0){
+
+            this.suma = this.suma-facturaId.value
+          }
+
+
+    }
+  });
+
+
+
 
   elementDetail.forEach((element:any) => {
     this.seleccionado = this.eliminarSeleccion(element)
 
   });
 
-  // this.seleccionado = aux
+
   elementDetail.forEach((facturaId:any,i:any) => {
     if(facturaId.factura_id === element.factura_id){
           facturaId.seleccionado = false
     }
   });
 }
+this.Sumatoria.emit(this.suma)
 this.GeneratePayableAcconting(element)
 console.log(this.seleccionado)
 }
@@ -246,7 +217,7 @@ SaveLoadedInvoices(elemt:any){
     }
     ,error => {
 
-      //this._facturas.logout()
+      this._facturas.logout()
     })
   }
 

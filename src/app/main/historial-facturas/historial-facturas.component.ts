@@ -190,7 +190,7 @@ export class HistorialFacturasComponent  {
       }
       ,error => {
 
-        ////this._facturas.logout()
+        this._facturas.logout()
       })
   }
   GeneratePayableAcconting(){
@@ -223,7 +223,7 @@ export class HistorialFacturasComponent  {
     }
     ,error => {
 
-      ////this._facturas.logout()
+      this._facturas.logout()
     })
   }
 
