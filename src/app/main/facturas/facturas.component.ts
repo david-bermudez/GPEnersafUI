@@ -39,7 +39,7 @@ export class FacturasComponent implements OnInit {
     dataSource:any
 
   // displayedColumns: string[] = ['#', 'Cliente', 'Factura', 'Concepto','Valor Concepto','Fecha Vencimiento','Estado'];
-  displayedColumns: string[] = ['select','Fecha Vencimiento','No','Cliente', 'Version', 'Factura', 'Concepto','Municipio','Estado','getdetails'];
+  displayedColumns: string[] = ['select','Fecha Vencimiento','Version', 'No','Cliente',  'Factura', 'Concepto','Municipio','Estado','getdetails'];
   displayedColumnsItems: string[] = ['index','Descripcion', 'Valor'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement: Factura | null |undefined;
