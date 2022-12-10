@@ -245,7 +245,8 @@ export class FacturasComponent implements OnInit {
       })
   }
 
-  ObtenerOpcionesMenu(factura:number){
+  ObtenerOpcionesMenu(factura: any){
+    console.log(factura);
     this._facturas.GenerateMenuInvoices(factura)
     .subscribe( resp =>
       {

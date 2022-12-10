@@ -9,7 +9,7 @@ import { FacturasService } from '../services/facturas.service';
   selector: 'app-detalle-factura',
   templateUrl: './detalle-factura.component.html',
   styleUrls: ['./detalle-factura.component.css'],
-  animations: [
+  animations: [ 
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
       state('expanded', style({height: '*'})),
@@ -31,11 +31,12 @@ export class DetalleFacturaComponent implements OnInit {
   constructor(private _facturas:FacturasService) {
 
   }
-  displayedColumnsFacturas: string[] = ['detalle'];
+  displayedColumnsFacturas: string[] = ['detalle','Estado'];
   displayedColumnsFacturasdetalle: string[] = ['select','description','value','suggestedValue'];
   columnsToDisplayWithExpand = [...this.displayedColumnsFacturas, 'expand'];
   expandedElement:  null | undefined;
-  isModify : boolean = false
+  isModify : boolean = false;
+  public menus:any[] = [];
 
   ngOnInit(): void {
 
@@ -232,5 +233,28 @@ SaveLoadedInvoices(elemt:any){
 
   }
 
+  obtenerErrorFactura(factura : any){
+    debugger;
+    this._facturas.GetErrorInvoicePay(factura).subscribe( resp => {
+      swal.fire({
+        title : resp.mensaje,
+        icon : 'warning',
+      })
+    },error => {
 
+      this._facturas.logout()
+    })
+
+  }
+
+  ObtenerOpcionesMenu(factura : any){
+    this._facturas.GenerateMenuInvoicesPay(factura)
+    .subscribe( resp =>
+      {
+        this.menus =resp
+        console.log(this.menus)
+      }
+      )
+
+  }
 }
