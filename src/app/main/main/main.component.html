@@ -53,7 +53,10 @@
             </mat-tab>
 
             <mat-tab label="Aplicación de Pagos">
-              <app-historial-facturas  [perido]="periodo"  ></app-historial-facturas>
+              <ng-template matTabContent>
+                <app-historial-facturas  [perido]="periodo"  ></app-historial-facturas>
+
+              </ng-template>
             </mat-tab>
 
 
