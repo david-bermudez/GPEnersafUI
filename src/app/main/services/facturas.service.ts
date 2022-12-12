@@ -92,6 +92,11 @@ export class FacturasService {
   }
 
   GenerateInvoiceAcconting(factura: any, groupName: string) {
+    if(this.facturas.length > 0){
+
+      this.facturas = []
+    }
+
     factura.forEach((elemt: any) => {
       this.facturas.push(
         {
