@@ -162,6 +162,8 @@ export class HistorialFacturasComponent  {
   }
 
   SaveLoadedInvoices(detalle:any){
+    this.sumatoria = 0
+      this.selected = -1
 
     console.log(this.seleccion)
 
@@ -195,7 +197,8 @@ export class HistorialFacturasComponent  {
   }
   GeneratePayableAcconting(){
 
-
+      this.sumatoria = 0
+      this.selected = -1
       console.log(this.seleccion)
 
     this._facturas.GeneratePayableAcconting(this.seleccion)
