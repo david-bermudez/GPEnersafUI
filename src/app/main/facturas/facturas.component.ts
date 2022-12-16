@@ -92,6 +92,7 @@ export class FacturasComponent implements OnInit {
 
   obtenerFacturas(){
     console.log("obtenerFacturas");
+    this.todos = false
 
     if(this.perido  !== undefined){
       let fecha = new Date(this.perido)
@@ -115,6 +116,7 @@ export class FacturasComponent implements OnInit {
         } else {
           this.validar = false
           this.facturacion = info
+
         }
       }else{
 
@@ -149,10 +151,13 @@ export class FacturasComponent implements OnInit {
 
   validarFacturas(factura: any){
 
+    this.todos = false
+
     let invoices = { invoices : [ factura ] };
     this.mensajes = []
 
     this._facturas.ValidatePendingInvoice(invoices).subscribe( resp => {
+      this.obtenerFacturas()
       this.validacionFinalizada = true;
       swal.fire({
         title : resp.mensaje,
@@ -234,6 +239,7 @@ export class FacturasComponent implements OnInit {
 
       this._facturas.GenerateInvoiceAcconting(this.seleccionado , tipoContabilizacion).subscribe( resp => {
         this.validacionFinalizada = true;
+        this.obtenerFacturas()
         swal.fire({
           title : resp.mensaje,
           icon : 'warning',
