@@ -45,10 +45,10 @@ export class FacturasService {
   }
 
   GetPendingInvoiceItems(factura: any) {
-    let { fechaFacturacion, version, factura_id } = factura
+    let { fechafacturacion, version, factura_id } = factura
     // fechafacturacion = this.formatDate(fechafacturacion)
     let body = {
-      "Fechafacturacion": fechaFacturacion,
+      "fechafacturacion": fechafacturacion,
       "Version": version,
       "Factura_id": factura_id
     }
