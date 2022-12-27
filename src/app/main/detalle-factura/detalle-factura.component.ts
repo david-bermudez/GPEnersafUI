@@ -9,7 +9,7 @@ import { FacturasService } from '../services/facturas.service';
   selector: 'app-detalle-factura',
   templateUrl: './detalle-factura.component.html',
   styleUrls: ['./detalle-factura.component.css'],
-  animations: [ 
+  animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
       state('expanded', style({height: '*'})),
@@ -31,7 +31,7 @@ export class DetalleFacturaComponent implements OnInit {
   constructor(private _facturas:FacturasService) {
 
   }
-  displayedColumnsFacturas: string[] = ['detalle','Estado'];
+  displayedColumnsFacturas: string[] = ['detalle','totalFactura','Estado'];
   displayedColumnsFacturasdetalle: string[] = ['select','description','value','suggestedValue'];
   columnsToDisplayWithExpand = [...this.displayedColumnsFacturas, 'expand'];
   expandedElement:  null | undefined;
@@ -49,6 +49,12 @@ export class DetalleFacturaComponent implements OnInit {
       resp => {
 
         this.seleccionado = []
+      }
+    )
+    this._facturas.calcular$.subscribe(
+      resp => {
+
+        this.seleccionarTodos(resp,this.detallFacturas,this.detallFacturas.invoices.detail)
       }
     )
 
@@ -255,6 +261,11 @@ SaveLoadedInvoices(elemt:any){
         console.log(this.menus)
       }
       )
+
+  }
+
+
+  calculadoraFactura(){
 
   }
 }

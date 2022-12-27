@@ -30,7 +30,7 @@ export interface PeriodicElement {
 export class HistorialFacturasComponent  {
   dataSource :any;
   displayedColumns = ['Cliente','getdetails'];
-  displayedColumnsItems: string[] = ['select','Consecutivo','Codigo','Valor', 'FechaIngreso'];
+  displayedColumnsItems: string[] = ['select','Consecutivo','Codigo','incomingValue','appliedValue','pendingValue', 'FechaIngreso'];
   displayedColumnsFacturas: string[] = ['Descripcion','actions'];
   displayedColumnsFacturasdetalle: string[] = ['description','value','suggestedValue'];
   displayedColumnsFacturasdetalleWithExpand = [...this.displayedColumnsFacturasdetalle, 'expand'];
@@ -140,6 +140,7 @@ export class HistorialFacturasComponent  {
 
     if(ob.checked){
       this.payments = elem
+      this._facturas.calcular$.emit(true)
 
       // this.sumatoria = this.sumatoria+valor
       // this.selected = index
