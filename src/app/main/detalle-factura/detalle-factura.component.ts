@@ -29,6 +29,7 @@ export class DetalleFacturaComponent implements OnInit {
   detail: any[] = [];
   todos : boolean = false
   romper: boolean = false;
+  valor: string = '';
   constructor(private _facturas:FacturasService) {
 
   }
@@ -54,14 +55,32 @@ export class DetalleFacturaComponent implements OnInit {
     )
     this._facturas.calcular$.subscribe(
       resp => {
+          // debugger
 
+            // this.valor =''
+            if( this.valor === ''){
 
+              this.valor = resp[1]
+            }else{
 
+              if(this.valor !== resp[1]){
+                this.valor = resp[1]
+                this.romper = false
+                this.seleccionado = []
+                debugger
+                this.detallFacturas.forEach((element:any,i:any) => {
+                  if(element.detail.seleccionado === true){
+                    element.detail.seleccionado = false
+                      element.seleccionado = false
+                  }
+                });
+              }
+            }
             this.detallFacturas.forEach((element:any) => {
-
+              if(!this.romper){
 
                 this.autoCheck(resp[0],element,element.detail,resp[1])
-
+              }
             });
 
       }
@@ -328,6 +347,9 @@ SaveLoadedInvoices(elemt:any){
             if(this.suma !== 0){
 
               this.suma = this.suma-facturaId.value
+            }
+            if( this.suma < 0){
+              this.suma = 0
             }
 
 
