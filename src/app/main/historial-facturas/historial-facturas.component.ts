@@ -136,11 +136,13 @@ export class HistorialFacturasComponent  {
 
   }
 
-  onChange(ob:any,elem:string,index:number){
+  onChange(ob:any,elem:any,index:number){
 
     if(ob.checked){
+
       this.payments = elem
-      this._facturas.calcular$.emit(true)
+      console.log(elem.pendingValue)
+      this._facturas.calcular$.emit([true,elem.pendingValue])
 
       // this.sumatoria = this.sumatoria+valor
       // this.selected = index
@@ -150,6 +152,7 @@ export class HistorialFacturasComponent  {
       // const aux = this.payments.filter( item => item !== elem)
 
       this.payments = ''
+      this._facturas.calcular$.emit([false])
     }
     this.checkUnCheck(index)
     console.log(this.payments,this.sumatoria,index)

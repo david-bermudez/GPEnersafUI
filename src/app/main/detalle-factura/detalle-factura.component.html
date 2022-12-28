@@ -9,7 +9,7 @@
         <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
         <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
       </button>
-      <mat-checkbox  (change)="seleccionarTodos($event,element,element.detail)">
+      <mat-checkbox  [checked]="element.seleccionado" (change)="seleccionarTodos($event,element,element.detail)">
       </mat-checkbox> {{element.description}}
     </td>
   </ng-container >
@@ -60,7 +60,7 @@
                   </mat-checkbox> -->
                 </th>
                 <td mat-cell *matCellDef="let row; let i = index;">
-                  <mat-checkbox [checked]="row.seleccionado" [disabled]="row.active" (change)="onChange($event,row,element)"
+                  <mat-checkbox [checked]="row.seleccionado" [value]="row.seleccionado" id="" [disabled]="row.active" (change)="onChange($event,row,element)"
                   >
                   </mat-checkbox>
                 </td>

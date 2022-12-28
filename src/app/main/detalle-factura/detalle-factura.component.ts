@@ -28,6 +28,7 @@ export class DetalleFacturaComponent implements OnInit {
   seleccionado: any[] = [];
   detail: any[] = [];
   todos : boolean = false
+  romper: boolean = false;
   constructor(private _facturas:FacturasService) {
 
   }
@@ -54,7 +55,15 @@ export class DetalleFacturaComponent implements OnInit {
     this._facturas.calcular$.subscribe(
       resp => {
 
-        this.seleccionarTodos(resp,this.detallFacturas,this.detallFacturas.invoices.detail)
+
+
+            this.detallFacturas.forEach((element:any) => {
+
+
+                this.autoCheck(resp[0],element,element.detail,resp[1])
+
+            });
+
       }
     )
 
@@ -264,8 +273,88 @@ SaveLoadedInvoices(elemt:any){
 
   }
 
+  autoCheck(check:any,element:any,elementDetail:any,saldo:any){
 
-  calculadoraFactura(){
+    if(check){
 
+      let restante = 0
+
+    elementDetail.forEach((facturaId:any,i:any) => {
+      if(facturaId.factura_id === element.factura_id && !this.romper){
+
+        restante = saldo - this.suma
+        if((this.suma + facturaId.value) < saldo){
+          console.log('hola')
+          console.log(i)
+          // debugger
+          if( facturaId.value  === 23567827903	){
+            console.log('oe')
+          }
+          facturaId.seleccionado = true
+          element.seleccionado = true
+          // document.getElementById().checked = true
+
+          this.seleccionado.push(
+            facturaId
+          )
+          this.suma = this.suma+facturaId.value
+        }else{
+          debugger
+          console.log(12345)
+          this.romper = true
+          return
+        }
+
+
+      }
+    });
+    this.todos = true
+
+    console.log(this.seleccionado)
+    console.log(this.suma)
+    // this.Sumatoria.emit(this.suma)
+
+  }else{
+    debugger
+    this.todos = false
+
+    elementDetail.forEach((facturaId:any,i:any) => {
+      if(facturaId.factura_id === element.factura_id){
+            facturaId.seleccionado = true
+
+            this.seleccionado.push(
+              facturaId
+            )
+            if(this.suma !== 0){
+
+              this.suma = this.suma-facturaId.value
+            }
+
+
+      }
+    });
+
+
+
+
+    elementDetail.forEach((element:any) => {
+      this.seleccionado = this.eliminarSeleccion(element)
+
+    });
+
+
+    elementDetail.forEach((facturaId:any,i:any) => {
+      if(facturaId.factura_id === element.factura_id){
+            facturaId.seleccionado = false
+          element.seleccionado = false
+      }
+    });
   }
+  this.Sumatoria.emit(this.suma)
+  this.GeneratePayableAcconting(element)
+  console.log(this.seleccionado)
+  }
+
+
+
 }

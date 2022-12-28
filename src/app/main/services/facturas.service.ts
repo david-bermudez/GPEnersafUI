@@ -15,7 +15,7 @@ export class FacturasService {
   constructor(private http: HttpClient, private router: Router) { }
 
   RecargarDetalle$ = new EventEmitter<boolean>();
-  calcular$ = new EventEmitter<boolean>();
+  calcular$ = new EventEmitter<any>();
 
   private baseUrl: string = environment.apiUrl;
   public facturas: any[] = []
