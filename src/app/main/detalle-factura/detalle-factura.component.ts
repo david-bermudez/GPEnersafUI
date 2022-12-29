@@ -60,6 +60,7 @@ export class DetalleFacturaComponent implements OnInit {
             // this.valor =''
             if( this.valor === ''){
 
+              this.suma = 0
               this.valor = resp[1]
             }else{
 
