@@ -47,9 +47,14 @@
                 </mat-checkbox>
               </th>
               <td mat-cell *matCellDef="let row; let i = index;">
-                <mat-checkbox [checked]="selected === i" (change)="onChange($event,row,i)"
+                <mat-checkbox  *ngIf="row.active" [checked]="selected === i" (change)="onChange($event,row,i)"
                 >
                 </mat-checkbox>
+                <mat-checkbox  *ngIf="!row.active" disabled [checked]="selected === i" (change)="onChange($event,row,i)"
+                >
+                </mat-checkbox>
+
+
               </td>
             </ng-container>
 

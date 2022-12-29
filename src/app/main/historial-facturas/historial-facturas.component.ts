@@ -112,6 +112,7 @@ export class HistorialFacturasComponent  {
       console.log(resp)
         this.detalleEmpresa = resp
         this.detallPagos = resp.payments
+
         this.detallFacturas = resp.invoices
     },error => {
 
@@ -121,6 +122,8 @@ export class HistorialFacturasComponent  {
         icon: 'error',
         text : error.error
       })
+
+      console.log(this.detallPagos)
     })
 
     // this._facturas.GetLoadedInvoicesDummie()
