@@ -67,6 +67,7 @@ export class DetalleFacturaComponent implements OnInit {
                 this.valor = resp[1]
                 this.romper = false
                 this.seleccionado = []
+                this.suma = 0
                 debugger
                 this.detallFacturas.forEach((element:any,i:any) => {
                   if(element.detail.seleccionado === true){

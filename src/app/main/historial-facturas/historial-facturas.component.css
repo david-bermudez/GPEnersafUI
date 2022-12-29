@@ -50,6 +50,18 @@ tr.example-element-row:not(.example-expanded-row):active {
   text-align: right;
   justify-content: flex-end;
 }
+.mat-column-pendingValue {
+  text-align: right;
+  justify-content: flex-end;
+}
+.mat-column-appliedValue {
+  text-align: right;
+  justify-content: flex-end;
+}
+.mat-column-incomingValue {
+  text-align: right;
+  justify-content: flex-end;
+}
 /*
 .mat-row .secundario {
   background-color: #5065d8;
