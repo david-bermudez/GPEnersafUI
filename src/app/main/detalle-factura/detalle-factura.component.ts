@@ -143,12 +143,12 @@ onChange(ob:any,item:any,element:any) {
   // console.log(element)
   this.Sumatoria.emit(this.suma)
   this.GeneratePayableAcconting(element)
-  console.log(this.seleccionado)
+  // console.log(this.seleccionado)
 }
 
 
 cambio(event:any){
-  console.log(event)
+  // console.log(event)
 }
 
 seleccionarTodos(check:any,element:any,elementDetail:any){
@@ -164,7 +164,7 @@ seleccionarTodos(check:any,element:any,elementDetail:any){
           this.seleccionado.push(
             facturaId
           )
-          debugger
+          // debugger
           this.suma = this.suma+facturaId.value
 
 
@@ -172,8 +172,8 @@ seleccionarTodos(check:any,element:any,elementDetail:any){
   });
   this.todos = true
 
-  console.log(this.seleccionado)
-  console.log(this.suma)
+  // console.log(this.seleccionado)
+  // console.log(this.suma)
   // this.Sumatoria.emit(this.suma)
 
 }else{
@@ -213,7 +213,7 @@ seleccionarTodos(check:any,element:any,elementDetail:any){
 }
 this.Sumatoria.emit(this.suma)
 this.GeneratePayableAcconting(element)
-console.log(this.seleccionado)
+// console.log(this.seleccionado)
 }
 
 
@@ -288,7 +288,7 @@ SaveLoadedInvoices(elemt:any){
     .subscribe( resp =>
       {
         this.menus =resp
-        console.log(this.menus)
+        // console.log(this.menus)
       }
       )
 
@@ -305,12 +305,10 @@ SaveLoadedInvoices(elemt:any){
 
         restante = saldo - this.suma
         if((this.suma + facturaId.value) < saldo){
-          console.log('hola')
-          console.log(i)
+          // console.log('hola')
+          // console.log(i)
           // debugger
-          if( facturaId.value  === 23567827903	){
-            console.log('oe')
-          }
+
           facturaId.seleccionado = true
           element.seleccionado = true
           // document.getElementById().checked = true
@@ -321,7 +319,8 @@ SaveLoadedInvoices(elemt:any){
           this.suma = this.suma+facturaId.value
         }else{
           debugger
-          console.log(12345)
+          /* Logging to the console. */
+          // console.log(12345)
           this.romper = true
           return
         }
@@ -331,8 +330,8 @@ SaveLoadedInvoices(elemt:any){
     });
     this.todos = true
 
-    console.log(this.seleccionado)
-    console.log(this.suma)
+    // console.log(this.seleccionado)
+    // console.log(this.suma)
     // this.Sumatoria.emit(this.suma)
 
   }else{
@@ -375,8 +374,9 @@ SaveLoadedInvoices(elemt:any){
     });
   }
   this.Sumatoria.emit(this.suma)
+  console.log(element)
   this.GeneratePayableAcconting(element)
-  console.log(this.seleccionado)
+  // console.log(this.seleccionado)
   }
 
 

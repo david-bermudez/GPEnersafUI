@@ -142,8 +142,9 @@ export class HistorialFacturasComponent  {
   onChange(ob:any,elem:any,index:number){
 
     if(ob.checked){
-
+      console.log(elem)
       this.payments = elem
+
       console.log(elem.pendingValue)
       this._facturas.calcular$.emit([true,elem.pendingValue])
 
@@ -233,8 +234,35 @@ export class HistorialFacturasComponent  {
     }
     ,error => {
 
-      this._facturas.logout()
+      // this._facturas.logout()
     })
+  }
+  getTotalCost(element:any) {
+    // console.log( element.map((t:any) => t.incomingValue).reduce((acc:any, value:any) => acc + value, 0))
+    return this.detallPagos.map((t:any) => t.incomingValue).reduce((acc:any, value:any) => acc + value, 0);
+
+
+
+    console.log(element)
+    return 12
+  }
+  getTotalCosta(element:any) {
+    // console.log( element.map((t:any) => t.incomingValue).reduce((acc:any, value:any) => acc + value, 0))
+    return this.detallPagos.map((t:any) => t.appliedValue).reduce((acc:any, value:any) => acc + value, 0);
+
+
+
+    console.log(element)
+    return 12
+  }
+  getTotalCostp(element:any) {
+    // console.log( element.map((t:any) => t.incomingValue).reduce((acc:any, value:any) => acc + value, 0))
+    return this.detallPagos.map((t:any) => t.pendingValue).reduce((acc:any, value:any) => acc + value, 0);
+
+
+
+    console.log(element)
+    return 12
   }
 
 
