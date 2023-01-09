@@ -11,6 +11,7 @@ import { MainComponent } from './main/main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalleFacturaComponent } from './detalle-factura/detalle-factura.component';
 import { AgregarComponent } from './agregar/agregar.component';
+import { ReporteComponent } from './reporte/reporte.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AgregarComponent } from './agregar/agregar.component';
     HistorialFacturasComponent,
     MainComponent,
     DetalleFacturaComponent,
-    AgregarComponent
+    AgregarComponent,
+    ReporteComponent
   ],
   imports: [
     CommonModule,

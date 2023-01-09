@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
+import { ReporteComponent } from './reporte/reporte.component';
 
 const routes: Routes = [
     {
@@ -10,8 +11,9 @@ const routes: Routes = [
       children: [
 
         { path: '**', redirectTo: 'inicio' },
-      ]
-    }
+      ],
+    },
+    { path: 'resultado', component : ReporteComponent },
 
 ];
 

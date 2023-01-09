@@ -39,7 +39,7 @@ export class FacturasComponent implements OnInit {
     dataSource:any
 
   // displayedColumns: string[] = ['#', 'Cliente', 'Factura', 'Concepto','Valor Concepto','Fecha Vencimiento','Estado'];
-  displayedColumns: string[] = ['select','Fecha Vencimiento','Version', 'No','Cliente',  'Factura', 'Concepto','Municipio','Estado','getdetails'];
+  displayedColumns: string[] = ['select','Fecha Vencimiento','Version', 'No','Cliente',  'Factura', 'Concepto','Municipio','statusfactura','Estado','getdetails'];
   displayedColumnsItems: string[] = ['index','Descripcion', 'Valor'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   expandedElement: Factura | null |undefined;
@@ -293,6 +293,12 @@ export class FacturasComponent implements OnInit {
     }
 
     console.log(this.seleccionado)
+  }
+
+
+  html(){
+
+    console.log(this._facturas.generarHtmlDummie())
   }
 
 

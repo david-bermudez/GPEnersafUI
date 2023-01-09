@@ -45,6 +45,10 @@ tr.example-element-row:not(.example-expanded-row):active {
   text-align: right;
   justify-content: flex-end;
 }
+.mat-column-statusfactura {
+  text-align: center;
+  /* justify-content: flex-end; */
+}
 
 .mat-row:nth-child(4n-1), .mat-row:nth-child(4n) {
   background-color: #ffffff;
